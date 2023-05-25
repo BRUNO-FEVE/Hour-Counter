@@ -14,7 +14,6 @@ public class TelaLoginCadastro extends JFrame {
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         add(centerPanel, BorderLayout.CENTER);
-        centerPanel.setBackground(Color.lightGray);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -23,12 +22,10 @@ public class TelaLoginCadastro extends JFrame {
         gbc.insets = new Insets(10, 10, 0, 10);
 
         JLabel labelLogin = new JLabel("Login:");
-        labelLogin.setForeground(Color.blue);
         centerPanel.add(labelLogin, gbc);
 
         gbc.gridy = 1;
         JLabel labelSenha = new JLabel("Senha:");
-        labelSenha.setForeground(Color.blue);
 
         centerPanel.add(labelSenha, gbc);
 
