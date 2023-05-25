@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 public class RegisterPage extends JFrame implements ActionListener{
     
     private JLabel nameLabel, raLabel, entityLabel, areaLabel, projectLabel, passwordLabel, confirmLabel;
-    private JTextField nameField, raField, entityField, areaField, projectField, passwordField, confirmField, test;
+    private JTextField nameField, raField, entityField, areaField, projectField, passwordField, confirmField;
     
     private JButton registerButton;
 
@@ -31,7 +31,6 @@ public class RegisterPage extends JFrame implements ActionListener{
         projectField = new JTextField("", 20);
         passwordField = new JTextField("", 20);
         confirmField = new JTextField("", 20);
-        test = new JTextField("", 20);
 
         registerButton = new JButton("Cadastrar");
 
