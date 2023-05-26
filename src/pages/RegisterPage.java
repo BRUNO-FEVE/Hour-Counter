@@ -42,6 +42,7 @@ public class RegisterPage extends JFrame implements ActionListener{
 
         JPanel columnPage = new JPanel(new GridLayout(2, 1)); 
         JPanel column = new JPanel(new GridLayout(8, 1));
+
         column.setBorder(padding);
 
         JPanel namePanel = new JPanel(new FlowLayout());
@@ -98,7 +99,7 @@ public class RegisterPage extends JFrame implements ActionListener{
 
         caixa.add(columnPage);
 
-        setSize(400, 400);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
