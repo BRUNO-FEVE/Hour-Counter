@@ -1,6 +1,7 @@
 package pages;
 import components.HourViewTableModel;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 
@@ -13,17 +14,22 @@ import javax.swing.border.EmptyBorder;
 
 public class HourViewPage extends JFrame{
     
-    private JLabel totalHoursMessageLabel;
+    private JLabel totalHoursMessageLabel, tabelMassageLabel;
 
     public HourViewPage(String[] columnName, Object[][] userData, String totalHours) {
         super("Histório de Horas");
 
         totalHoursMessageLabel = new JLabel("Horas Totais: " + totalHours);
+        tabelMassageLabel = new JLabel("Suas ultimas Tarefas:");
 
         // Layout
-        EmptyBorder padding = new EmptyBorder(15, 0, 15, 0);
+
+        // Font Size
         totalHoursMessageLabel.setFont(totalHoursMessageLabel.getFont().deriveFont(36f));
-        totalHoursMessageLabel.setBorder(padding);
+
+        // Margin 
+        totalHoursMessageLabel.setBorder(new EmptyBorder(15, 0, 15, 0));
+        tabelMassageLabel.setBorder(new EmptyBorder(0, 0, 5, 0));
 
         Container caixa = getContentPane();
         caixa.setLayout(new FlowLayout());
@@ -33,10 +39,9 @@ public class HourViewPage extends JFrame{
 
         JTable hourHistoricTable = new JTable();
         hourHistoricTable.setModel(new HourViewTableModel(columnName, userData));
-        // hourHistoricTable.set
-
 
         screanLayoutPanel.add(totalHoursMessageLabel);
+        screanLayoutPanel.add(tabelMassageLabel);
         screanLayoutPanel.add(hourHistoricTable);
 
         caixa.add(screanLayoutPanel);
