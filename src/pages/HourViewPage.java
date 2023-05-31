@@ -11,27 +11,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class HourViewPage extends JFrame{
     
-    private JLabel totalHoursMessageLabel, tabelMassageLabel;
+    private JLabel totalHoursMessageLabel, tabelMassageLabel, totalHoursLabel;
 
     public HourViewPage(String[] columnName, Object[][] userData, String totalHours) {
         super("Histório de Horas");
 
-        totalHoursMessageLabel = new JLabel("Horas Totais: " + totalHours);
+        totalHoursMessageLabel = new JLabel("Horas Totais: ");
         tabelMassageLabel = new JLabel("Suas ultimas Tarefas:");
+        totalHoursLabel = new JLabel(totalHours);
 
         // Layout
 
         // Font Size
         totalHoursMessageLabel.setFont(totalHoursMessageLabel.getFont().deriveFont(36f));
+        totalHoursLabel.setFont(totalHoursMessageLabel.getFont().deriveFont(36f));
 
         // Font Color 
-        if (Integer.parseInt(totalHours.substring(0, 2)) > 40) {
-            totalHoursMessageLabel.setForeground(Color.decode("#31572c"));
+        if (Integer.parseInt(totalHours.substring(0, 2)) > 39) {
+            totalHoursLabel.setForeground(Color.decode("#31572c"));
         } else {
-            totalHoursMessageLabel.setForeground(Color.decode("#c1121f"));
+            totalHoursLabel.setForeground(Color.decode("#c1121f"));
         }
 
         // Margin 
@@ -44,10 +47,18 @@ public class HourViewPage extends JFrame{
         JPanel screanLayoutPanel = new JPanel();
         screanLayoutPanel.setLayout(new BoxLayout(screanLayoutPanel, BoxLayout.Y_AXIS));
 
+        JPanel totalHourPanel = new JPanel();
+        totalHourPanel.setLayout(new FlowLayout());
+
         JTable hourHistoricTable = new JTable();
         hourHistoricTable.setModel(new HourViewTableModel(columnName, userData));
 
-        screanLayoutPanel.add(totalHoursMessageLabel);
+        
+
+        totalHourPanel.add(totalHoursMessageLabel);
+        totalHourPanel.add(totalHoursLabel);
+
+        screanLayoutPanel.add(totalHourPanel);
         screanLayoutPanel.add(tabelMassageLabel);
         screanLayoutPanel.add(hourHistoricTable);
 
