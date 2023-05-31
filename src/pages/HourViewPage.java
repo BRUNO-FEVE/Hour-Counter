@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 
 
 public class HourViewPage extends JFrame{
@@ -85,6 +86,16 @@ public class HourViewPage extends JFrame{
         
         JTable hourHistoricTable = new JTable();
         hourHistoricTable.setModel(new HourViewTableModel(columnName, userData));
+
+        // Centering the Cells 
+        
+        DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
+        centerRender.setHorizontalAlignment(JLabel.CENTER);
+        hourHistoricTable.setDefaultRenderer(String.class, centerRender);
+
+        for (int i = 0; i < hourHistoricTable.getColumnCount(); i++) {
+            hourHistoricTable.getColumnModel().getColumn(i).setCellRenderer(centerRender);
+        }
 
         totalHourPanel.add(totalHoursMessageLabel);
         totalHourPanel.add(totalHoursLabel);
