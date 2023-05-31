@@ -16,6 +16,6 @@ public class App {
             {5, "Reunião Planning", "01:30:00"}
         };
 
-        new HourViewPage(columnNameList, userData, "00:00:00");
+        new HourViewPage(columnNameList, userData, "50:00:00");
     }
 }

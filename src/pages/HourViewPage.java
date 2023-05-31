@@ -27,6 +27,13 @@ public class HourViewPage extends JFrame{
         // Font Size
         totalHoursMessageLabel.setFont(totalHoursMessageLabel.getFont().deriveFont(36f));
 
+        // Font Color 
+        if (Integer.parseInt(totalHours.substring(0, 2)) > 40) {
+            totalHoursMessageLabel.setForeground(Color.decode("#31572c"));
+        } else {
+            totalHoursMessageLabel.setForeground(Color.decode("#c1121f"));
+        }
+
         // Margin 
         totalHoursMessageLabel.setBorder(new EmptyBorder(15, 0, 15, 0));
         tabelMassageLabel.setBorder(new EmptyBorder(0, 0, 5, 0));
