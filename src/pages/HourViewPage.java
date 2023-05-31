@@ -32,9 +32,7 @@ public class HourViewPage extends JFrame{
         greenLabel = new JLabel("Voçê NÃO atingiu as horas neccessarias");
         redLabel = new JLabel("Voçê atingiu as horas neccessarias");
 
-        //redSquare.drawRect(EXIT_ON_CLOSE, ABORT, WIDTH, HEIGHT);
-
-        // Layout
+        // ------  Layout -------
 
         // Font Size
         totalHoursMessageLabel.setFont(totalHoursMessageLabel.getFont().deriveFont(36f));
@@ -60,6 +58,8 @@ public class HourViewPage extends JFrame{
         JPanel totalHourPanel = new JPanel();
         totalHourPanel.setLayout(new FlowLayout());
 
+        // Squares
+
         JPanel subtitles = new JPanel() {
             @Override
             public void paintComponent(Graphics graphic) {
@@ -84,11 +84,21 @@ public class HourViewPage extends JFrame{
         JPanel tableTittle = new JPanel();
         tableTittle.setLayout(new FlowLayout(FlowLayout.LEFT));
         
+        // Table
+        Object[][] tableData = new Object[userData.length+1][columnName.length];
+        tableData[0] = columnName;
+
+        for (int l=0; l < userData.length; l++) {
+            for(int i=0; i<columnName.length; i++) {
+                tableData[l+1][i] = userData[l][i];
+            }
+        }
+
         JTable hourHistoricTable = new JTable();
-        hourHistoricTable.setModel(new HourViewTableModel(columnName, userData));
+        hourHistoricTable.setModel(new HourViewTableModel(columnName, tableData));
 
         // Centering the Cells 
-        
+
         DefaultTableCellRenderer centerRender = new DefaultTableCellRenderer();
         centerRender.setHorizontalAlignment(JLabel.CENTER);
         hourHistoricTable.setDefaultRenderer(String.class, centerRender);
@@ -96,6 +106,8 @@ public class HourViewPage extends JFrame{
         for (int i = 0; i < hourHistoricTable.getColumnCount(); i++) {
             hourHistoricTable.getColumnModel().getColumn(i).setCellRenderer(centerRender);
         }
+
+        // Adding to the Panels
 
         totalHourPanel.add(totalHoursMessageLabel);
         totalHourPanel.add(totalHoursLabel);

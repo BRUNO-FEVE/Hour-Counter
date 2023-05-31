@@ -9,7 +9,7 @@ public class App {
         // new RegisterPage();
         // new LoginPage();
         // new UserMenuPage();
-        String[] columnNameList = {"id", "descrição", "duração"};
+        String[] columnNameList = {"Id", "Descrição", "Duração"};
         Object[][] userData = {
             {5, "Reunião Planning", "01:30:00"},
             {5, "Reunião Planning", "01:30:00"},
