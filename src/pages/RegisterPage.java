@@ -14,7 +14,7 @@ public class RegisterPage extends PageModel{
     
     private JButton registerButton;
 
-    public RegisterPage(String superTitle, Container caixa, boolean visible) {
+    public RegisterPage(String superTitle, Container caixa) {
         super(superTitle, caixa);
 
         nameLabel = new JLabel("Nome: ");
@@ -96,8 +96,6 @@ public class RegisterPage extends PageModel{
 
         columnPage.add(column);
         columnPage.add(buttomPanel);
-
-        columnPage.setVisible(visible);
 
         super.caixa.add(columnPage);
     }

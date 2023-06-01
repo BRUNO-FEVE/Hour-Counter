@@ -1,28 +1,25 @@
-import javax.swing.JPanel;
+import java.awt.Container;
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
 
 import pages.LoginPage;
-import pages.UserMenuPage;
+import components.PageModel;
 
-public class App {
-    public static void main(String[] args){
-        //new RegisterPage();
-        //LoginPage login = new LoginPage();
-        //login.openTheLoginPage();
-        //new UserMenuPage();
-        //String[] columnNameList = {"Id", "Descrição", "Duração"};
-        //Object[][] userData = {
-        //   {5, "Reunião Planning", "01:30:00"},
-        //   {5, "Reunião Planning", "01:30:00"},
-        //    {5, "Reunião Planning", "01:30:00"}
-        //};
-        
-        JPanel caixa = new JPanel();
+public class App extends  JFrame{
 
-        LoginPage login = new LoginPage("Login", caixa);
-        UserMenuPage menu = new UserMenuPage("Menu", caixa);
-        
-        new Application(login, menu);
+    public App (PageModel login) {
+        super(login.superTitle);
 
-        //new HourViewPage(columnNameList, userData, "40:00:00");
+        Container caixa = getContentPane();
+        caixa.setLayout(new FlowLayout());
+
+        caixa.add(login.getScreanContent());
+
+        pack();
+        setLocationRelativeTo(null);
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 }

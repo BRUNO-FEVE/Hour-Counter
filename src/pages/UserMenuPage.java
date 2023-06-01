@@ -12,6 +12,8 @@ public class UserMenuPage extends PageModel{
     private JLabel message, nameData, raData, entityData, areaData, projectData ,userNameLabel, userRaLabel, userEntityLabel, userAreaLabel, userProjectLabel;
     private JButton registerHourButton, showHourButton;
 
+    public boolean visible;
+
     public UserMenuPage(String superTitle, Container caixa) {
         super(superTitle, caixa);
 
@@ -82,6 +84,10 @@ public class UserMenuPage extends PageModel{
         screanLayoutPanel.add(buttonsPanel);
 
         super.caixa.add(screanLayoutPanel);
+    }
+
+    public boolean setVisible(boolean visible) {
+        return this.visible = visible;
     }
 
     public void actionPerformed(ActionEvent e) {

@@ -1,9 +1,11 @@
 package components;
 import java.awt.Container;
+import java.awt.LayoutManager;
 
 
 public class PageModel {
     
+    public static final LayoutManager PageLayout = null;
     public String superTitle;
     public Container caixa;
 
