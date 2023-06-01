@@ -1,17 +1,18 @@
 package pages;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import components.PageModel;
 
 public class UserMenuPage extends PageModel{
     
     private JLabel message, nameData, raData, entityData, areaData, projectData ,userNameLabel, userRaLabel, userEntityLabel, userAreaLabel, userProjectLabel;
     private JButton registerHourButton, showHourButton;
 
-    public UserMenuPage(String superTitle, JPanel caixa) {
+    public UserMenuPage(String superTitle, Container caixa) {
         super(superTitle, caixa);
 
         message = new JLabel("Seus Dados:");
@@ -35,7 +36,7 @@ public class UserMenuPage extends PageModel{
         EmptyBorder paddingUserData = new EmptyBorder(10, 30, 50, 0);
         EmptyBorder paddingScrean = new EmptyBorder(30, 0, 0, 0);
 
-        super.caixa.setLayout(new FlowLayout());
+        super.caixa.setLayout(new BorderLayout(10, 10));
 
         JPanel screanLayoutPanel = new JPanel();
         screanLayoutPanel.setLayout(new BoxLayout(screanLayoutPanel, BoxLayout.Y_AXIS));

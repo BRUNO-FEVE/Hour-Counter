@@ -1,20 +1,21 @@
 package pages;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class RegisterPage extends JFrame implements ActionListener{
+import components.PageModel;
+
+public class RegisterPage extends PageModel{
     
     private JLabel nameLabel, raLabel, entityLabel, areaLabel, projectLabel, passwordLabel, confirmLabel;
     private JTextField nameField, raField, entityField, areaField, projectField, passwordField, confirmField;
     
     private JButton registerButton;
 
-    public RegisterPage() {
-        super("Cadastro");
+    public RegisterPage(String superTitle, Container caixa, boolean visible) {
+        super(superTitle, caixa);
 
         nameLabel = new JLabel("Nome: ");
         raLabel = new JLabel("RA: ");
@@ -37,8 +38,7 @@ public class RegisterPage extends JFrame implements ActionListener{
         // Layout 
         EmptyBorder padding = new EmptyBorder(15, 0, 15, 0);
 
-        Container caixa = getContentPane();
-        caixa.setLayout(new FlowLayout());
+        super.caixa.setLayout(new FlowLayout());
 
         JPanel columnPage = new JPanel(new GridLayout(2, 1)); 
         JPanel column = new JPanel(new GridLayout(8, 1));
@@ -97,11 +97,9 @@ public class RegisterPage extends JFrame implements ActionListener{
         columnPage.add(column);
         columnPage.add(buttomPanel);
 
-        caixa.add(columnPage);
+        columnPage.setVisible(visible);
 
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        super.caixa.add(columnPage);
     }
 
     public void actionPerformed(ActionEvent e) {

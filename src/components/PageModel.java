@@ -1,21 +1,20 @@
-package pages;
-
-import java.awt.BorderLayout;
+package components;
+import java.awt.Container;
 
 import javax.swing.JPanel;
 
 public class PageModel {
     
     public String superTitle;
-    public JPanel caixa;
+    public Container caixa;
 
-    public PageModel(String superString, JPanel caixa) {
+    public PageModel(String superString, Container caixa) {
         super();
         this.superTitle = superString;
         this.caixa = caixa;
     }
 
-    public JPanel getScreanContent() {
+    public Container getScreanContent() {
         return this.caixa;
     }
 }

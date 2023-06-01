@@ -1,3 +1,5 @@
+import java.awt.geom.FlatteningPathIterator;
+
 import javax.swing.JPanel;
 
 import pages.HourViewPage;
@@ -20,11 +22,11 @@ public class App {
         };
         
         JPanel caixa = new JPanel();
+
         LoginPage login = new LoginPage("Login", caixa);
         UserMenuPage menu = new UserMenuPage("Menu", caixa);
         
-
-        new Application(login);
+        new Application(login, menu);
 
         //new HourViewPage(columnNameList, userData, "40:00:00");
     }
