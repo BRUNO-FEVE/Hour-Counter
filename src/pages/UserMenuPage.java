@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class UserMenuPage extends JFrame implements ActionListener{
+public class UserMenuPage extends PageModel{
     
     private JLabel message, nameData, raData, entityData, areaData, projectData ,userNameLabel, userRaLabel, userEntityLabel, userAreaLabel, userProjectLabel;
     private JButton registerHourButton, showHourButton;
 
-    public UserMenuPage() {
-        super("User Menu");
+    public UserMenuPage(String superTitle, JPanel caixa) {
+        super(superTitle, caixa);
 
         message = new JLabel("Seus Dados:");
         userNameLabel = new JLabel("Nome:");
@@ -35,8 +35,7 @@ public class UserMenuPage extends JFrame implements ActionListener{
         EmptyBorder paddingUserData = new EmptyBorder(10, 30, 50, 0);
         EmptyBorder paddingScrean = new EmptyBorder(30, 0, 0, 0);
 
-        Container caixa = getContentPane();
-        caixa.setLayout(new FlowLayout());
+        super.caixa.setLayout(new FlowLayout());
 
         JPanel screanLayoutPanel = new JPanel();
         screanLayoutPanel.setLayout(new BoxLayout(screanLayoutPanel, BoxLayout.Y_AXIS));
@@ -81,11 +80,7 @@ public class UserMenuPage extends JFrame implements ActionListener{
         screanLayoutPanel.add(userDataPanel);
         screanLayoutPanel.add(buttonsPanel);
 
-        caixa.add(screanLayoutPanel);
-
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        super.caixa.add(screanLayoutPanel);
     }
 
     public void actionPerformed(ActionEvent e) {

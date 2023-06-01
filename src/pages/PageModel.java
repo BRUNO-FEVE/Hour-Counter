@@ -8,7 +8,6 @@ public class PageModel {
     
     public String superTitle;
     public JPanel caixa;
-    public BorderLayout PageLayout = new BorderLayout(10, 10);
 
     public PageModel(String superString, JPanel caixa) {
         super();

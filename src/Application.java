@@ -1,4 +1,7 @@
 import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
@@ -11,7 +14,7 @@ public class Application extends  JFrame{
         super(login.superTitle);
 
         Container caixa = getContentPane();
-        caixa.setLayout(login.PageLayout);
+        caixa.setLayout(new FlowLayout());
 
         caixa.add(login.getScreanContent());
 

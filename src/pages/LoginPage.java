@@ -7,9 +7,11 @@ public class LoginPage extends PageModel{
 
     private JLabel loginLabel, passwordLabel, logoLabel;
     private JTextField loginField, passwordField;
-    private JButton loginButton, registerButton;
     private ImageIcon logoIcon, scaledIcon;
     private Image scaledImage; 
+
+    public JButton loginButton, registerButton;
+    public BorderLayout PageLayout = new BorderLayout(10, 10);
 
     public LoginPage(String superTitle, JPanel caixa) {
         super(superTitle, caixa);

@@ -21,6 +21,8 @@ public class App {
         
         JPanel caixa = new JPanel();
         LoginPage login = new LoginPage("Login", caixa);
+        UserMenuPage menu = new UserMenuPage("Menu", caixa);
+        
 
         new Application(login);
 
