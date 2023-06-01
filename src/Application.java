@@ -3,12 +3,11 @@ import java.awt.Container;
 import javax.swing.JFrame;
 
 import pages.LoginPage;
+import pages.PageModel;
 
 public class Application extends  JFrame{
 
-    public LoginPage login;
-
-    public Application (LoginPage login) {
+    public Application (PageModel login) {
         super(login.superTitle);
 
         Container caixa = getContentPane();

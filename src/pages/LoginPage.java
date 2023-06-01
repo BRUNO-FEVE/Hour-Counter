@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class LoginPage {
+public class LoginPage extends PageModel{
 
     private JLabel loginLabel, passwordLabel, logoLabel;
     private JTextField loginField, passwordField;
@@ -11,12 +11,8 @@ public class LoginPage {
     private ImageIcon logoIcon, scaledIcon;
     private Image scaledImage; 
 
-    public String superTitle = "Login e Cadastro";
-    public BorderLayout PageLayout = new BorderLayout(10, 10);
-    public JPanel caixa;
-
-    public LoginPage() {
-        super();
+    public LoginPage(String superTitle, JPanel caixa) {
+        super(superTitle, caixa);
 
         loginLabel = new JLabel("Login:");
         passwordLabel = new JLabel("Senha:");
@@ -38,7 +34,7 @@ public class LoginPage {
         registerButton.setPreferredSize(buttonSize);
         loginButton.setPreferredSize(buttonSize);
 
-        this.caixa = new JPanel(new BorderLayout(10, 10));
+        super.caixa = new JPanel(new BorderLayout(10, 10));
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -60,16 +56,13 @@ public class LoginPage {
         buttonPanel.add(registerButton);
         buttonPanel.add(loginButton);
         
-        caixa.add(centerPanel, BorderLayout.CENTER);
-        caixa.add(buttonPanel, BorderLayout.SOUTH);
-        caixa.add(logoLabel, BorderLayout.NORTH);
+        super.caixa.add(centerPanel, BorderLayout.CENTER);
+        super.caixa.add(buttonPanel, BorderLayout.SOUTH);
+        super.caixa.add(logoLabel, BorderLayout.NORTH);
     }
 
     public void actionPerformed(ActionEvent e) {
 
     }
 
-    public JPanel getScreanContent() {
-        return this.caixa;
-    }
 }

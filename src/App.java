@@ -1,3 +1,5 @@
+import javax.swing.JPanel;
+
 import pages.HourViewPage;
 
 import pages.LoginPage;
@@ -16,8 +18,11 @@ public class App {
             {5, "Reunião Planning", "01:30:00"},
             {5, "Reunião Planning", "01:30:00"}
         };
+        
+        JPanel caixa = new JPanel();
+        LoginPage login = new LoginPage("Login", caixa);
 
-        new Application(new LoginPage());
+        new Application(login);
 
         //new HourViewPage(columnNameList, userData, "40:00:00");
     }
