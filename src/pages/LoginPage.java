@@ -2,9 +2,8 @@ package pages;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class LoginPage extends JFrame implements ActionListener{
+public class LoginPage {
 
     private JLabel loginLabel, passwordLabel, logoLabel;
     private JTextField loginField, passwordField;
@@ -12,8 +11,12 @@ public class LoginPage extends JFrame implements ActionListener{
     private ImageIcon logoIcon, scaledIcon;
     private Image scaledImage; 
 
+    public String superTitle = "Login e Cadastro";
+    public BorderLayout PageLayout = new BorderLayout(10, 10);
+    public JPanel caixa;
+
     public LoginPage() {
-        super("Login e Cadastro");
+        super();
 
         loginLabel = new JLabel("Login:");
         passwordLabel = new JLabel("Senha:");
@@ -35,9 +38,7 @@ public class LoginPage extends JFrame implements ActionListener{
         registerButton.setPreferredSize(buttonSize);
         loginButton.setPreferredSize(buttonSize);
 
-
-        Container caixa = getContentPane();
-        caixa.setLayout(new BorderLayout(10, 10));
+        this.caixa = new JPanel(new BorderLayout(10, 10));
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -62,15 +63,13 @@ public class LoginPage extends JFrame implements ActionListener{
         caixa.add(centerPanel, BorderLayout.CENTER);
         caixa.add(buttonPanel, BorderLayout.SOUTH);
         caixa.add(logoLabel, BorderLayout.NORTH);
-
-        pack();
-        setLocationRelativeTo(null);
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public JPanel getScreanContent() {
+        return this.caixa;
     }
 }

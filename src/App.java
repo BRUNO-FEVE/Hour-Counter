@@ -1,14 +1,15 @@
 import pages.HourViewPage;
 
-// import pages.LoginPage;
-// import pages.RegisterPage;
-// import pages.UserMenuPage;
+import pages.LoginPage;
+import pages.RegisterPage;
+import pages.UserMenuPage;
 
 public class App {
     public static void main(String[] args){
-        // new RegisterPage();
-        // new LoginPage();
-        // new UserMenuPage();
+        //new RegisterPage();
+        //LoginPage login = new LoginPage();
+        //login.openTheLoginPage();
+        //new UserMenuPage();
         String[] columnNameList = {"Id", "Descrição", "Duração"};
         Object[][] userData = {
             {5, "Reunião Planning", "01:30:00"},
@@ -16,6 +17,8 @@ public class App {
             {5, "Reunião Planning", "01:30:00"}
         };
 
-        new HourViewPage(columnNameList, userData, "40:00:00");
+        new Application(new LoginPage());
+
+        //new HourViewPage(columnNameList, userData, "40:00:00");
     }
 }
