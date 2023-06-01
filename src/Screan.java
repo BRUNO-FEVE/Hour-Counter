@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import pages.LoginPage;
@@ -11,6 +12,8 @@ public class Screan {
     public static void main(String[] args) {
 
         App telaLogin, telaMenu, telaRegister;
+
+        String[] userData = new String[5];
         
         JPanel caixaLogin = new JPanel();
         JPanel caixaMenu = new JPanel();
@@ -46,7 +49,28 @@ public class Screan {
                 }
             }
         });
+        
+        register.registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (register.passwordField.getText().equals(register.confirmField.getText())) {
 
+                    userData[0] = register.passwordField.getText();
+                    userData[1] = register.nameField.getText();
+                    userData[2] = register.raField.getText();
+                    userData[3] = register.entityField.getText();
+                    userData[4] = register.projectField.getText();
+
+                    JOptionPane.showMessageDialog(null, "Conta Criada com Sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+
+                    telaRegister.setVisible(false);
+                    telaLogin.setVisible(true);
+                } else if (register.passwordField.getText().isBlank() || register.confirmField.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Prencha todos os campos!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senhas digitas são diferentes!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
 
 
         

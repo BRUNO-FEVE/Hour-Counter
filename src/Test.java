@@ -23,7 +23,7 @@ public class Test {
         UserMenuPage menu = new UserMenuPage("Menu", caixa);
         RegisterPage register = new RegisterPage("Registri-se", caixa);
         
-        new App(login);
+        //new App(login);
 
         //new Application(login, menu, register);
 

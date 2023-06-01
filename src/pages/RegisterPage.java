@@ -10,9 +10,11 @@ import components.PageModel;
 public class RegisterPage extends PageModel{
     
     private JLabel nameLabel, raLabel, entityLabel, areaLabel, projectLabel, passwordLabel, confirmLabel;
-    private JTextField nameField, raField, entityField, areaField, projectField, passwordField, confirmField;
+    public JTextField nameField, raField, entityField, areaField, projectField;
+
+    public JPasswordField passwordField, confirmField;
     
-    private JButton registerButton;
+    public JButton registerButton;
 
     public RegisterPage(String superTitle, Container caixa) {
         super(superTitle, caixa);
@@ -30,8 +32,8 @@ public class RegisterPage extends PageModel{
         entityField = new JTextField("", 20);
         areaField = new JTextField("", 20);
         projectField = new JTextField("", 20);
-        passwordField = new JTextField("", 20);
-        confirmField = new JTextField("", 20);
+        passwordField = new JPasswordField("", 20);
+        confirmField = new JPasswordField("", 20);
 
         registerButton = new JButton("Cadastrar");
 
