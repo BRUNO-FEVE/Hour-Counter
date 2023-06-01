@@ -1,11 +1,6 @@
-import java.awt.geom.FlatteningPathIterator;
-
 import javax.swing.JPanel;
 
-import pages.HourViewPage;
-
 import pages.LoginPage;
-import pages.RegisterPage;
 import pages.UserMenuPage;
 
 public class App {
@@ -14,12 +9,12 @@ public class App {
         //LoginPage login = new LoginPage();
         //login.openTheLoginPage();
         //new UserMenuPage();
-        String[] columnNameList = {"Id", "Descrição", "Duração"};
-        Object[][] userData = {
-            {5, "Reunião Planning", "01:30:00"},
-            {5, "Reunião Planning", "01:30:00"},
-            {5, "Reunião Planning", "01:30:00"}
-        };
+        //String[] columnNameList = {"Id", "Descrição", "Duração"};
+        //Object[][] userData = {
+        //   {5, "Reunião Planning", "01:30:00"},
+        //   {5, "Reunião Planning", "01:30:00"},
+        //    {5, "Reunião Planning", "01:30:00"}
+        //};
         
         JPanel caixa = new JPanel();
 

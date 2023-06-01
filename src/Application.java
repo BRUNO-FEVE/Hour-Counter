@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import components.PageModel;
 import pages.LoginPage;
 import pages.UserMenuPage;
 

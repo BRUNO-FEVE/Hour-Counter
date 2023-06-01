@@ -1,7 +1,6 @@
 package components;
 import java.awt.Container;
 
-import javax.swing.JPanel;
 
 public class PageModel {
     
