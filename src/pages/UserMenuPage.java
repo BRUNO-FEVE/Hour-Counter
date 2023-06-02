@@ -1,18 +1,21 @@
 package pages;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class UserMenuPage extends JFrame implements ActionListener{
+import components.PageModel;
+
+public class UserMenuPage extends PageModel{
     
     private JLabel message, nameData, raData, entityData, areaData, projectData ,userNameLabel, userRaLabel, userEntityLabel, userAreaLabel, userProjectLabel;
     private JButton registerHourButton, showHourButton;
 
-    public UserMenuPage() {
-        super("User Menu");
+    public boolean visible;
+
+    public UserMenuPage(String superTitle, Container caixa) {
+        super(superTitle, caixa);
 
         message = new JLabel("Seus Dados:");
         userNameLabel = new JLabel("Nome:");
@@ -35,8 +38,7 @@ public class UserMenuPage extends JFrame implements ActionListener{
         EmptyBorder paddingUserData = new EmptyBorder(10, 30, 50, 0);
         EmptyBorder paddingScrean = new EmptyBorder(30, 0, 0, 0);
 
-        Container caixa = getContentPane();
-        caixa.setLayout(new FlowLayout());
+        super.caixa.setLayout(new BorderLayout(10, 10));
 
         JPanel screanLayoutPanel = new JPanel();
         screanLayoutPanel.setLayout(new BoxLayout(screanLayoutPanel, BoxLayout.Y_AXIS));
@@ -81,11 +83,11 @@ public class UserMenuPage extends JFrame implements ActionListener{
         screanLayoutPanel.add(userDataPanel);
         screanLayoutPanel.add(buttonsPanel);
 
-        caixa.add(screanLayoutPanel);
+        super.caixa.add(screanLayoutPanel);
+    }
 
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+    public boolean setVisible(boolean visible) {
+        return this.visible = visible;
     }
 
     public void actionPerformed(ActionEvent e) {
