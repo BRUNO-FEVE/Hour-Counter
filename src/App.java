@@ -15,9 +15,11 @@ public class App extends  JFrame{
 
         caixa.add(login.getScreanContent());
 
+        setJMenuBar(login.menuBar);
+
         pack();
         setLocationRelativeTo(null);
-        setSize(600, 400);
+        setSize(600, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

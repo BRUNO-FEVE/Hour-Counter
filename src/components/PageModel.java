@@ -1,18 +1,33 @@
 package components;
 import java.awt.Container;
-import java.awt.LayoutManager;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 
 public class PageModel {
     
-    public static final LayoutManager PageLayout = null;
     public String superTitle;
     public Container caixa;
+    public JMenuBar menuBar;
 
     public PageModel(String superString, Container caixa) {
         super();
         this.superTitle = superString;
         this.caixa = caixa;
+
+        menuBar = new JMenuBar();
+        
+        JMenu fileMenu = new JMenu("Menu");
+
+        JMenuItem back = new JMenuItem("Voltar");
+        JMenuItem exit = new JMenuItem("Sair");
+
+        fileMenu.add(back);
+        fileMenu.add(exit);
+
+        menuBar.add(fileMenu);
     }
 
     public Container getScreanContent() {
