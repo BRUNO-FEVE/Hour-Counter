@@ -10,12 +10,14 @@ import components.PageModel;
 public class UserMenuPage extends PageModel{
     
     private JLabel message, nameData, raData, entityData, areaData, projectData ,userNameLabel, userRaLabel, userEntityLabel, userAreaLabel, userProjectLabel;
-    private JButton registerHourButton, showHourButton;
+    public JButton registerHourButton, showHourButton;
 
     public boolean visible;
+    public String[] dataList= new String[6];
 
-    public UserMenuPage(String superTitle, Container caixa) {
+    public UserMenuPage(String superTitle, Container caixa, String[] dataStrings) {
         super(superTitle, caixa);
+        this.dataList = dataStrings;
 
         message = new JLabel("Seus Dados:");
         userNameLabel = new JLabel("Nome:");
@@ -24,11 +26,11 @@ public class UserMenuPage extends PageModel{
         userAreaLabel = new JLabel("Área:");
         userProjectLabel = new JLabel("Projeto:");
 
-        nameData = new JLabel("User.getName()");
-        raData = new JLabel("User.getRa()");
-        entityData = new JLabel("User.getEntity()");
-        areaData = new JLabel("User.getArea()");
-        projectData = new JLabel("User.getProject()");
+        nameData = new JLabel(dataList[1]);
+        raData = new JLabel(dataList[2]);
+        entityData = new JLabel(dataList[3]);
+        areaData = new JLabel(dataList[4]);
+        projectData = new JLabel(dataList[5]);
 
         registerHourButton = new JButton("Registrar Horas");
         showHourButton = new JButton("Visualizar Horas");

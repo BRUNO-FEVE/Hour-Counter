@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import pages.HourViewPage;
 import pages.LoginPage;
 import pages.RegisterPage;
 import pages.UserMenuPage;
@@ -13,21 +14,26 @@ public class Screan {
 
         App telaLogin, telaMenu, telaRegister;
 
-        String[] userData = new String[5];
+        String[] userData = new String[6];
         
         JPanel caixaLogin = new JPanel();
         JPanel caixaMenu = new JPanel();
         JPanel caixaRegister = new JPanel();
+        JPanel caixaHourView = new JPanel();
 
         LoginPage login = new LoginPage("Login", caixaLogin);
-        UserMenuPage menu = new UserMenuPage("Menu", caixaMenu);
+        
         RegisterPage register = new RegisterPage("Registri-se", caixaRegister);
 
+        String[] columnNameList = {"Id", "Descrição", "Duração"};
+        Object[][] userHourData = {
+            {5, "Reunião Planning", "01:50:00"},
+            {5, "Reunião Planning", "01:55:00"},
+            {5, "Reunião Planning", "01:40:00"}
+        };
 
         telaLogin = new App(login);
 
-        telaMenu = new App(menu);
-        telaMenu.setVisible(false);
 
         telaRegister = new App(register);
         telaRegister.setVisible(false);
@@ -36,7 +42,18 @@ public class Screan {
             public void actionPerformed(ActionEvent e) {
                 if (true) {
                     telaLogin.setVisible(false);
-                    telaMenu.setVisible(true);
+
+                    UserMenuPage menu = new UserMenuPage("Menu", caixaMenu, userData);
+                    App telaMenu = new App(menu);
+
+                    menu.showHourButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            telaMenu.setVisible(false);
+
+                            HourViewPage hourList = new HourViewPage(columnNameList, userHourData, "Ultimas atividades", caixaHourView);
+                            App telaHourView = new App(hourList);
+                        }
+                    });
                 }
             }
         });
@@ -58,7 +75,18 @@ public class Screan {
                     userData[1] = register.nameField.getText();
                     userData[2] = register.raField.getText();
                     userData[3] = register.entityField.getText();
-                    userData[4] = register.projectField.getText();
+                    userData[4] = register.areaField.getText();
+                    userData[5] = register.projectField.getText();
+
+                    register.nameField.setText("");
+                    register.raField.setText("");
+                    register.entityField.setText("");
+                    register.areaField.setText("");
+                    register.projectField.setText("");
+                    register.passwordField.setText("");
+                    register.confirmField.setText("");
+
+                    
 
                     JOptionPane.showMessageDialog(null, "Conta Criada com Sucesso!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 
@@ -71,6 +99,21 @@ public class Screan {
                 }
             }
         });
+
+        
+        // menu.showHourButton.addActionListener(new ActionListener() {
+        //     public void actionPerformed(ActionEvent e) {
+        //         if(true) {
+
+        //             telaMenu.setVisible(false);
+        //         }
+        //     }
+        // });
+
+        
+
+
+
 
 
         
