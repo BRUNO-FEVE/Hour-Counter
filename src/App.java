@@ -3,7 +3,6 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
-import pages.LoginPage;
 import components.PageModel;
 
 public class App extends  JFrame{
