@@ -2,7 +2,6 @@ import java.sql.SQLException;
 
 import back.sql.ConectDB;
 import back.sql.JDBC;
-
 import java.sql.Connection;
 
 public class Teste {
@@ -11,14 +10,22 @@ public class Teste {
         try{
             ConectDB db = new ConectDB();
             conn = db.conect();
-            JDBC pessoa = new JDBC("Gabriel", "senha123", "20.00822-8", "Dev", "TI", "Projeto");
-            pessoa.insert(conn);
+            /*JDBC pessoa = new JDBC("Gabriel", "senha123", "20.00822-8", "Dev", "TI", "Projeto");
+            pessoa.insertLogin(conn);
             System.out.println(pessoa);
-            System.out.println("Conectado!");
-            JDBC horas = new JDBC("3", "2", "Feito att");
+            System.out.println("Conectado!");*/
+            /*JDBC horas = new JDBC("3", "2", "Feito att");
             horas.insertHours(conn);
             System.out.println(horas);
+            System.out.println("Conectado!");*/
+            JDBC pessoa2 = new JDBC("20.00822-8");
+            pessoa2.loadLogin(conn);
+            System.out.println(pessoa2);
             System.out.println("Conectado!");
+            System.out.println("Nome: " + pessoa2.getName() + "\nSenha: " + pessoa2.getPassword() + "\nRA: " + pessoa2.getId() + "\nArea: " + pessoa2.getArea() + "\nProjeto: " + pessoa2.getProject() + "\nEntidade: " + pessoa2.getEntity() + "\nid:"  + pessoa2.getId());
+            
+        
+        
         }catch(SQLException e){
             e.printStackTrace();
         }finally{

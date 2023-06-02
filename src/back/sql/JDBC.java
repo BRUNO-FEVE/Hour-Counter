@@ -33,10 +33,9 @@ public class JDBC {
     this.project = project;
     }
 
-    public JDBC(String id, String hours, String desc){
-    this.id = id;
-    this.hours = hours;
-    this.desc = desc;
+    public JDBC(String ra){
+    this.ra = ra;
+    
     }
     
    //gets
@@ -169,20 +168,24 @@ public void insertHours(Connection conn){
 }
     
 public void loadLogin(Connection conn){
-    String sqlSelect = "SELECT name, password, ra, entity, area, project, id FROM login";
+    String sqlSelect = "SELECT name, password, entity, area, project, ra, id FROM login WHERE ra = ?";
     PreparedStatement stm = null;
     ResultSet rs = null;
-    try {
+    try  {
         stm = conn.prepareStatement(sqlSelect);
+        stm.setString(1, getRa());
         rs = stm.executeQuery();
+        
         while (rs.next()) {
             setName(rs.getString(1));
             setPassword(rs.getString(2));
-            setRa(rs.getString(3));
-            setEntity(rs.getString(4));
-            setArea(rs.getString(5));
-            setProject(rs.getString(6));
+            setEntity(rs.getString(3));
+            setArea(rs.getString(4));
+            setProject(rs.getString(5));
+            setRa(rs.getString(6));
             setId(rs.getString(7));
+            
+
         }
     }
     catch (Exception e) {
@@ -206,7 +209,7 @@ public void loadLogin(Connection conn){
     }
 }
 public void loadHours(Connection conn){
-    String sqlSelect = "SELECT login_id, hours, description FROM hours";
+    String sqlSelect = "SELECT id, hours, description FROM hours WHERE login_id = ?";
     PreparedStatement stm = null;
     ResultSet rs = null;
     try {
@@ -216,6 +219,7 @@ public void loadHours(Connection conn){
             setId(rs.getString(1));
             setHours(rs.getString(2));
             setDesc(rs.getString(3));
+            stm.setString(1, getId());
         }
     }
     catch (Exception e) {
