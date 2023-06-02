@@ -1,19 +1,23 @@
 package pages;
 import javax.swing.*;
+
+import components.PageModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class LoginPage extends JFrame implements ActionListener{
+public class LoginPage extends PageModel{
 
     private JLabel loginLabel, passwordLabel, logoLabel;
     private JTextField loginField, passwordField;
-    private JButton loginButton, registerButton;
     private ImageIcon logoIcon, scaledIcon;
     private Image scaledImage; 
 
-    public LoginPage() {
-        super("Login e Cadastro");
+    public JButton loginButton, registerButton;
+    public BorderLayout PageLayout = new BorderLayout(10, 10);
+
+    public LoginPage(String superTitle, Container caixa) {
+        super(superTitle, caixa);
 
         loginLabel = new JLabel("Login:");
         passwordLabel = new JLabel("Senha:");
@@ -35,9 +39,7 @@ public class LoginPage extends JFrame implements ActionListener{
         registerButton.setPreferredSize(buttonSize);
         loginButton.setPreferredSize(buttonSize);
 
-
-        Container caixa = getContentPane();
-        caixa.setLayout(new BorderLayout(10, 10));
+        super.caixa = new JPanel(new BorderLayout(10, 10));
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -59,18 +61,13 @@ public class LoginPage extends JFrame implements ActionListener{
         buttonPanel.add(registerButton);
         buttonPanel.add(loginButton);
         
-        caixa.add(centerPanel, BorderLayout.CENTER);
-        caixa.add(buttonPanel, BorderLayout.SOUTH);
-        caixa.add(logoLabel, BorderLayout.NORTH);
-
-        pack();
-        setLocationRelativeTo(null);
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        super.caixa.add(centerPanel, BorderLayout.CENTER);
+        super.caixa.add(buttonPanel, BorderLayout.SOUTH);
+        super.caixa.add(logoLabel, BorderLayout.NORTH);
     }
 
     public void actionPerformed(ActionEvent e) {
 
     }
+
 }

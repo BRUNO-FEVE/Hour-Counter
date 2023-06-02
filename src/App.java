@@ -1,21 +1,24 @@
-import pages.HourViewPage;
+import java.awt.Container;
+import java.awt.FlowLayout;
 
-// import pages.LoginPage;
-// import pages.RegisterPage;
-// import pages.UserMenuPage;
+import javax.swing.JFrame;
 
-public class App {
-    public static void main(String[] args){
-        // new RegisterPage();
-        // new LoginPage();
-        // new UserMenuPage();
-        String[] columnNameList = {"Id", "Descrição", "Duração"};
-        Object[][] userData = {
-            {5, "Reunião Planning", "01:30:00"},
-            {5, "Reunião Planning", "01:30:00"},
-            {5, "Reunião Planning", "01:30:00"}
-        };
+import components.PageModel;
 
-        new HourViewPage(columnNameList, userData, "40:00:00");
+public class App extends  JFrame{
+
+    public App (PageModel login) {
+        super(login.superTitle);
+
+        Container caixa = getContentPane();
+        caixa.setLayout(new FlowLayout());
+
+        caixa.add(login.getScreanContent());
+
+        pack();
+        setLocationRelativeTo(null);
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 }
