@@ -18,6 +18,7 @@ public class JDBC {
     private String area;
     private String project;
     private String id;
+    private String id_hours;
     private String hours;
     private String desc;
     
@@ -33,8 +34,9 @@ public class JDBC {
     this.project = project;
     }
 
-    public JDBC(String ra){
+    public JDBC(String ra, String password){
     this.ra = ra;
+    this.password = password;
     
     }
     
@@ -66,6 +68,9 @@ public class JDBC {
     public String getDesc(){
         return desc;
     }
+    public String getId_hours(){
+        return id_hours;
+    }
 
     
     //sets
@@ -95,6 +100,9 @@ public class JDBC {
     }
     public void setDesc(String desc){
         this.desc = desc;
+    }
+    public void setId_hours(String id_hours){
+        this.id_hours = id_hours;
     }
        
     
@@ -168,12 +176,13 @@ public void insertHours(Connection conn){
 }
     
 public void loadLogin(Connection conn){
-    String sqlSelect = "SELECT name, password, entity, area, project, ra, id FROM login WHERE ra = ?";
+    String sqlSelect = "SELECT name, password, entity, area, project, ra, id FROM login WHERE ra = ? AND PASSWORD = ?";
     PreparedStatement stm = null;
     ResultSet rs = null;
     try  {
         stm = conn.prepareStatement(sqlSelect);
         stm.setString(1, getRa());
+        stm.setString(2, getPassword());
         rs = stm.executeQuery();
         
         while (rs.next()) {
@@ -214,12 +223,13 @@ public void loadHours(Connection conn){
     ResultSet rs = null;
     try {
         stm = conn.prepareStatement(sqlSelect);
+        stm.setString(1, getId());
         rs = stm.executeQuery();
         while (rs.next()) {
-            setId(rs.getString(1));
+            setId_hours(rs.getString(1));
             setHours(rs.getString(2));
             setDesc(rs.getString(3));
-            stm.setString(1, getId());
+            
         }
     }
     catch (Exception e) {

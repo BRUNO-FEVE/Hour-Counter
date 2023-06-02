@@ -18,11 +18,11 @@ public class Teste {
             horas.insertHours(conn);
             System.out.println(horas);
             System.out.println("Conectado!");*/
-            JDBC pessoa2 = new JDBC("20.00822-8");
+            JDBC pessoa2 = new JDBC("20.00822-8", "senha123");
             pessoa2.loadLogin(conn);
             System.out.println(pessoa2);
             System.out.println("Conectado!");
-            System.out.println("Nome: " + pessoa2.getName() + "\nSenha: " + pessoa2.getPassword() + "\nRA: " + pessoa2.getId() + "\nArea: " + pessoa2.getArea() + "\nProjeto: " + pessoa2.getProject() + "\nEntidade: " + pessoa2.getEntity() + "\nid:"  + pessoa2.getId());
+            System.out.println("Nome: " + pessoa2.getName() + "\nSenha: " + pessoa2.getPassword() + "\nRA: " + pessoa2.getRa() + "\nArea: " + pessoa2.getArea() + "\nProjeto: " + pessoa2.getProject() + "\nEntidade: " + pessoa2.getEntity() + "\nid:"  + pessoa2.getId());
             
         
         
