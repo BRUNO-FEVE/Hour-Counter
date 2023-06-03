@@ -60,6 +60,8 @@ public class LoginPage extends PageModel{
 
         buttonPanel.add(registerButton);
         buttonPanel.add(loginButton);
+
+        super.menuBar.setVisible(false);
         
         super.caixa.add(centerPanel, BorderLayout.CENTER);
         super.caixa.add(buttonPanel, BorderLayout.SOUTH);
