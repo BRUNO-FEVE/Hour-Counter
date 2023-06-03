@@ -1,13 +1,13 @@
 package pages;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import components.PageModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ContainerAdapter;
 
 public class StopwatchPage extends PageModel {
 
@@ -25,8 +25,11 @@ public class StopwatchPage extends PageModel {
 
         super.caixa.setLayout(new BorderLayout());
 
+        EmptyBorder margin = new EmptyBorder(30, 0, 0, 0);
+
         labelCronometro = new JLabel("00:00:00");
-        labelCronometro.setFont(new Font("Arial", Font.BOLD, 28));
+        labelCronometro.setFont(new Font("Arial", Font.BOLD, 45));
+        labelCronometro.setBorder(margin);
 
         labelDescricao = new JLabel("Descrição:");
         textFieldDescricao = new JTextField(14);
