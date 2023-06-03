@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import pages.HourViewPage;
 import pages.LoginPage;
 import pages.RegisterPage;
+import pages.StopwatchPage;
 import pages.UserMenuPage;
 
 public class Screan {
@@ -20,6 +21,7 @@ public class Screan {
         JPanel caixaMenu = new JPanel();
         JPanel caixaRegister = new JPanel();
         JPanel caixaHourView = new JPanel();
+        JPanel caixaStopWatch = new JPanel();
 
         LoginPage login = new LoginPage("Login", caixaLogin);
         
@@ -52,6 +54,15 @@ public class Screan {
 
                             HourViewPage hourList = new HourViewPage(columnNameList, userHourData, "Ultimas atividades", caixaHourView);
                             App telaHourView = new App(hourList);
+                        }
+                    });
+
+                    menu.registerHourButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            telaMenu.setVisible(false);
+                            
+                            StopwatchPage stopwatch = new StopwatchPage("Registrar Horas", caixaStopWatch);
+                            App telaStopWatch = new App(stopwatch);
                         }
                     });
                 }
