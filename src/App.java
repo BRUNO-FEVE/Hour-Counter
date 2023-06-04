@@ -3,12 +3,15 @@ import java.awt.FlowLayout;
 import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.xml.crypto.Data;
 
 import components.PageModel;
 import pages.LoginPage;
@@ -22,23 +25,15 @@ public class App extends  JFrame implements ActionListener{
     public Container caixa;
     public JMenuBar menuBar;
 
-    private Object[][] data = {
-        {
-            "Bruno Augusto Lopes Fevereiro",
-            "20.02194-0",
-            "Dev. Community Mauá",
-            "Front-End",
-            "Portal Interno",
-            "123"
-        }, 
-        {
-            "Bruno Augusto Lopes Fevereiro",
-            "123",
-            "Dev. Community Mauá",
-            "Front-End",
-            "Portal Interno",
-            "123"
-        }
+    private ArrayList<Object[]> data = new ArrayList<>();
+
+    private Object[] userTest = new Object[] {
+        "Bruno Augusto Lopes Fevereiro",
+        "123",
+        "Dev. Community Mauá",
+        "Front-End",
+        "Portal Interno",
+        "123"
     };
 
     public LoginPage loginContent;
@@ -65,6 +60,7 @@ public class App extends  JFrame implements ActionListener{
 
         loginContent.registerButton.addActionListener(this);
         loginContent.loginButton.addActionListener(this);
+        registerContent.registerButton.addActionListener(this);
 
         this.content = loginPanel;
         caixa.add(content);
@@ -77,6 +73,10 @@ public class App extends  JFrame implements ActionListener{
         setSize(600, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    public void addUserToDataBase(Object[] newUser) {
+        data.add(newUser);
     }
 
     public void updatePage(PageModel page) {
@@ -110,9 +110,10 @@ public class App extends  JFrame implements ActionListener{
 
         } else if (e.getSource() == loginContent.getLoginButton()) {
             boolean isLogged = false;
-            for (Object[] objects : data) {
-                if (loginContent.raField.getText().equals(objects[1]) && loginContent.passwordField.getText().equals(objects[5])) {
-                    menuContent.setUserData(objects);
+            this.addUserToDataBase(this.userTest); // Test
+            for (Object[] user : data) {
+                if (loginContent.raField.getText().equals(user[1]) && new String(loginContent.passwordField.getPassword()).equals(user[5])) {
+                    menuContent.setUserData(user);
                     this.updatePage(menuContent);
                     isLogged = true;
                 } 
@@ -122,6 +123,11 @@ public class App extends  JFrame implements ActionListener{
             }
         }
 
+        if (e.getSource() == registerContent.getRegisterButton()) {
+            this.addUserToDataBase(registerContent.getNewUser());
+            System.out.println(Arrays.toString(registerContent.getNewUser()));
+            this.updatePage(loginContent);
+        }
 
     }
 }

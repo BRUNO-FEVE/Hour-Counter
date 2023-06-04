@@ -102,6 +102,22 @@ public class RegisterPage extends PageModel{
         super.caixa.add(columnPage);
     }
 
+    public Object[] getNewUser() {
+        Object[] newUser = {
+            this.nameField.getText(),
+            this.raField.getText(),
+            this.entityField.getText(),
+            this.areaField.getText(),
+            this.projectField.getText(),
+            new String(this.passwordField.getPassword()),
+        };
+        return newUser;
+    }
+
+    public JButton getRegisterButton() {
+        return this.registerButton;
+    }
+
     public void actionPerformed(ActionEvent e) {
 
     }

@@ -13,7 +13,8 @@ public class LoginPage extends PageModel{
     private ImageIcon logoIcon, scaledIcon;
     private Image scaledImage; 
 
-    public JTextField raField, passwordField;
+    public JPasswordField passwordField;
+    public JTextField raField;
     public JButton loginButton, registerButton;
     public BorderLayout PageLayout = new BorderLayout(10, 10);
 
@@ -24,7 +25,7 @@ public class LoginPage extends PageModel{
         passwordLabel = new JLabel("Senha:");
 
         raField = new JTextField("", 30);
-        passwordField = new JTextField("", 30);
+        passwordField = new JPasswordField("", 30);
 
         registerButton = new JButton("Cadastrar");
         loginButton = new JButton("Logar");

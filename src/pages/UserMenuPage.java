@@ -1,7 +1,5 @@
 package pages;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.util.Arrays;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
