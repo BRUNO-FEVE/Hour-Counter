@@ -124,10 +124,25 @@ public class App extends  JFrame implements ActionListener{
         }
 
         if (e.getSource() == registerContent.getRegisterButton()) {
-            this.addUserToDataBase(registerContent.getNewUser());
-            System.out.println(Arrays.toString(registerContent.getNewUser()));
-            this.updatePage(loginContent);
-        }
+            boolean hasName = !registerContent.nameField.getText().isEmpty();
+            boolean hasRa = !registerContent.raField.getText().isEmpty();
+            boolean hasEntity = !registerContent.entityField.getText().isEmpty();
+            boolean hasArea = !registerContent.areaField.getText().isEmpty();
+            boolean hasProject = !registerContent.projectField.getText().isEmpty();
+            boolean hasPassword = new String(registerContent.passwordField.getPassword()).length() > 0;
+            boolean hasConfirmed = new String(registerContent.confirmField.getPassword()).length() > 0;            
 
+            if (hasName && hasRa && hasEntity && hasArea && hasProject && hasPassword && hasConfirmed) {
+                if (new String(registerContent.passwordField.getPassword()).equals(new String(registerContent.confirmField.getPassword()))) {
+                    this.addUserToDataBase(registerContent.getNewUser());
+                    System.out.println(Arrays.toString(registerContent.getNewUser()));
+                    this.updatePage(loginContent);
+                } else {
+                    JOptionPane.showMessageDialog(null, "As senhas digitadas são DIFERENTES!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Prencha TODOS os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }
 }
