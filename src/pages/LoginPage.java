@@ -10,19 +10,20 @@ import java.awt.event.ActionEvent;
 public class LoginPage extends PageModel{
 
     private JLabel loginLabel, passwordLabel, logoLabel;
-    private JTextField loginField, passwordField;
     private ImageIcon logoIcon, scaledIcon;
     private Image scaledImage; 
 
+    public JTextField raField, passwordField;
     public JButton loginButton, registerButton;
     public BorderLayout PageLayout = new BorderLayout(10, 10);
 
     public LoginPage() {
+        super.superTitle = "Login";
 
         loginLabel = new JLabel("Login:");
         passwordLabel = new JLabel("Senha:");
 
-        loginField = new JTextField("", 30);
+        raField = new JTextField("", 30);
         passwordField = new JTextField("", 30);
 
         registerButton = new JButton("Cadastrar");
@@ -56,7 +57,7 @@ public class LoginPage extends PageModel{
         centerPanel.add(passwordLabel, gbc);
         gbc.gridx = 1;
         gbc.gridy = 0;
-        centerPanel.add(loginField, gbc);
+        centerPanel.add(raField, gbc);
         gbc.gridy = 1;
         centerPanel.add(passwordField, gbc);
 

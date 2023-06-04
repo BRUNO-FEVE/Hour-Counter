@@ -11,12 +11,11 @@ public class RegisterPage extends PageModel{
     
     private JLabel nameLabel, raLabel, entityLabel, areaLabel, projectLabel, passwordLabel, confirmLabel;
     public JTextField nameField, raField, entityField, areaField, projectField;
-
     public JPasswordField passwordField, confirmField;
-    
     public JButton registerButton;
 
     public RegisterPage() {
+        super.superTitle = "Registri-se";
 
         nameLabel = new JLabel("Nome: ");
         raLabel = new JLabel("RA: ");
@@ -97,6 +96,8 @@ public class RegisterPage extends PageModel{
 
         columnPage.add(column);
         columnPage.add(buttomPanel);
+
+        super.menuBar.setVisible(false);
 
         super.caixa.add(columnPage);
     }

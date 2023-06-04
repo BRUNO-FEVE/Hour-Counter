@@ -40,7 +40,7 @@ public class PageModel {
         menuBar.add(pagesMenu);
     }
 
-    public Container getScreanContent() {
+    public JPanel getScreanContent() {
         return this.caixa;
     }
 }

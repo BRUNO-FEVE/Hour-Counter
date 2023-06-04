@@ -15,9 +15,8 @@ public class UserMenuPage extends PageModel{
     public boolean visible;
     public String[] dataList= new String[6];
 
-    public UserMenuPage(String superTitle, Container caixa, String[] dataStrings) {
-        super(superTitle, caixa);
-        this.dataList = dataStrings;
+    public UserMenuPage() {
+        super.superTitle = "Menu";
 
         message = new JLabel("Seus Dados:");
         userNameLabel = new JLabel("Nome:");
@@ -92,9 +91,7 @@ public class UserMenuPage extends PageModel{
         return this.visible = visible;
     }
 
-    
-
-    public void actionPerformed(ActionEvent e) {
-
+    public void setUserData(String[] dataList) {
+        this.dataList = dataList;
     }
 }

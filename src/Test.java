@@ -25,6 +25,5 @@ public class Test {
         //new HourViewPage(columnNameList, userData, "40:00:00");
 
         App app = new App();
-        app.updatePage("register");
     }
 }
