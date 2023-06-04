@@ -35,7 +35,8 @@ public class LoginPage extends PageModel{
         scaledImage = logoIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         scaledIcon = new ImageIcon(scaledImage);
         logoLabel = new JLabel(scaledIcon);
-        logoLabel.setBorder(margin);
+        logoLabel.setBorder(margin); 
+        
 
         //Button Layout 
         Dimension buttonSize = new Dimension(110, 40);
