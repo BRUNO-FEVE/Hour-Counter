@@ -16,8 +16,7 @@ public class RegisterPage extends PageModel{
     
     public JButton registerButton;
 
-    public RegisterPage(String superTitle, Container caixa) {
-        super(superTitle, caixa);
+    public RegisterPage() {
 
         nameLabel = new JLabel("Nome: ");
         raLabel = new JLabel("RA: ");

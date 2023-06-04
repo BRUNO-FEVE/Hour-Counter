@@ -17,8 +17,7 @@ public class LoginPage extends PageModel{
     public JButton loginButton, registerButton;
     public BorderLayout PageLayout = new BorderLayout(10, 10);
 
-    public LoginPage(String superTitle, Container caixa) {
-        super(superTitle, caixa);
+    public LoginPage() {
 
         loginLabel = new JLabel("Login:");
         passwordLabel = new JLabel("Senha:");
@@ -36,14 +35,13 @@ public class LoginPage extends PageModel{
         scaledIcon = new ImageIcon(scaledImage);
         logoLabel = new JLabel(scaledIcon);
         logoLabel.setBorder(margin); 
-        
 
         //Button Layout 
         Dimension buttonSize = new Dimension(110, 40);
         registerButton.setPreferredSize(buttonSize);
         loginButton.setPreferredSize(buttonSize);
 
-        super.caixa = new JPanel(new BorderLayout(10, 10));
+        super.caixa.setLayout(new BorderLayout(10, 10));
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -70,6 +68,14 @@ public class LoginPage extends PageModel{
         super.caixa.add(centerPanel, BorderLayout.CENTER);
         super.caixa.add(buttonPanel, BorderLayout.SOUTH);
         super.caixa.add(logoLabel, BorderLayout.NORTH);
+    }
+
+    public JButton getLoginButton() {
+        return this.loginButton;
+    }
+
+    public JButton getRegisterButton() {
+        return this.registerButton;
     }
 
     public void actionPerformed(ActionEvent e) {

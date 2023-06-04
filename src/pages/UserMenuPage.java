@@ -92,6 +92,8 @@ public class UserMenuPage extends PageModel{
         return this.visible = visible;
     }
 
+    
+
     public void actionPerformed(ActionEvent e) {
 
     }

@@ -4,18 +4,17 @@ import java.awt.Container;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 
 public class PageModel {
     
     public String superTitle;
-    public Container caixa;
+    public JPanel caixa;
     public JMenuBar menuBar;
 
-    public PageModel(String superString, Container caixa) {
-        super();
-        this.superTitle = superString;
-        this.caixa = caixa;
+    public PageModel() {
+        this.caixa = new JPanel();
 
         menuBar = new JMenuBar();
         

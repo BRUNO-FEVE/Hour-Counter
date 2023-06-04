@@ -1,27 +1,30 @@
-// import javax.swing.JPanel;
+import javax.swing.JPanel;
 
-// import pages.LoginPage;
-// import pages.RegisterPage;
-// import pages.UserMenuPage;
+import pages.LoginPage;
+import pages.RegisterPage;
+import pages.UserMenuPage;
 
-// public class Test {
-//     public static void main(String[] args){
-//         //new RegisterPage();
-//         //LoginPage login = new LoginPage();
-//         //login.openTheLoginPage();
-//         //new UserMenuPage();
+public class Test {
+    public static void main(String[] args){
+        //new RegisterPage();
+        //LoginPage login = new LoginPage();
+        //login.openTheLoginPage();
+        //new UserMenuPage();
         
         
-//         //JPanel caixa = new JPanel();
+        //JPanel caixa = new JPanel();
 
-//         //LoginPage login = new LoginPage("Login", caixa);
-//         //UserMenuPage menu = new UserMenuPage("Menu", caixa);
-//         //RegisterPage register = new RegisterPage("Registri-se", caixa);
+        //LoginPage login = new LoginPage("Login", caixa);
+        //UserMenuPage menu = new UserMenuPage("Menu", caixa);
+        //RegisterPage register = new RegisterPage("Registri-se", caixa);
         
-//         //new App(login);
+        //new App(login);
 
-//         //new Application(login, menu, register);
+        //new Application(login, menu, register);
 
-//         //new HourViewPage(columnNameList, userData, "40:00:00");
-//     }
-// }
+        //new HourViewPage(columnNameList, userData, "40:00:00");
+
+        App app = new App();
+        app.updatePage("register");
+    }
+}
