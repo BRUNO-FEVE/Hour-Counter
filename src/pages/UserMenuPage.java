@@ -1,6 +1,7 @@
 package pages;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,7 +14,7 @@ public class UserMenuPage extends PageModel{
     public JButton registerHourButton, showHourButton;
 
     public boolean visible;
-    public String[] dataList= new String[6];
+    public Object[] dataList;
 
     public UserMenuPage() {
         super.superTitle = "Menu";
@@ -25,11 +26,11 @@ public class UserMenuPage extends PageModel{
         userAreaLabel = new JLabel("Área:");
         userProjectLabel = new JLabel("Projeto:");
 
-        nameData = new JLabel(dataList[1]);
-        raData = new JLabel(dataList[2]);
-        entityData = new JLabel(dataList[3]);
-        areaData = new JLabel(dataList[4]);
-        projectData = new JLabel(dataList[5]);
+        nameData = new JLabel();
+        raData = new JLabel();
+        entityData = new JLabel();
+        areaData = new JLabel();
+        projectData = new JLabel();
 
         registerHourButton = new JButton("Registrar Horas");
         showHourButton = new JButton("Visualizar Horas");
@@ -91,7 +92,12 @@ public class UserMenuPage extends PageModel{
         return this.visible = visible;
     }
 
-    public void setUserData(String[] dataList) {
+    public void setUserData(Object[] dataList) {
         this.dataList = dataList;
+        this.nameData.setText(this.dataList[0].toString());
+        this.raData.setText(this.dataList[1].toString());
+        this.entityData.setText(this.dataList[2].toString());
+        this.areaData.setText(this.dataList[3].toString());
+        this.projectData.setText(this.dataList[4].toString());
     }
 }

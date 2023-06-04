@@ -3,6 +3,7 @@ import java.awt.FlowLayout;
 import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -106,10 +107,12 @@ public class App extends  JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginContent.getRegisterButton()) {
             this.updatePage(registerContent);
+
         } else if (e.getSource() == loginContent.getLoginButton()) {
             boolean isLogged = false;
             for (Object[] objects : data) {
                 if (loginContent.raField.getText().equals(objects[1]) && loginContent.passwordField.getText().equals(objects[5])) {
+                    menuContent.setUserData(objects);
                     this.updatePage(menuContent);
                     isLogged = true;
                 } 
@@ -118,5 +121,7 @@ public class App extends  JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Ra ou senha foram digitados errados!", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         }
+
+
     }
 }
