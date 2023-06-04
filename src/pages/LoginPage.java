@@ -1,5 +1,6 @@
 package pages;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import components.PageModel;
 
@@ -28,11 +29,13 @@ public class LoginPage extends PageModel{
         registerButton = new JButton("Cadastrar");
         loginButton = new JButton("Logar");
 
+        EmptyBorder margin = new EmptyBorder(50, 0, 0, 0);
         // Image
         logoIcon = new ImageIcon("./assets/logoMaua.png");
         scaledImage = logoIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         scaledIcon = new ImageIcon(scaledImage);
         logoLabel = new JLabel(scaledIcon);
+        logoLabel.setBorder(margin);
 
         //Button Layout 
         Dimension buttonSize = new Dimension(110, 40);
