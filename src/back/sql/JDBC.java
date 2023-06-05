@@ -1,10 +1,6 @@
 package back.sql;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import javax.sql.ConnectionEventListener;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -144,12 +140,12 @@ finally {
 
 public void insertHours(Connection conn){
     String sqlInsert = 
-    "INSERT INTO hours (login_id, hours, description) VALUES (?,?,?)";  
+    "INSERT INTO hours (login_ra, hours, description) VALUES (?,?,?)";  
     
         PreparedStatement stm = null;
         try {
             stm = conn.prepareStatement(sqlInsert);
-            stm.setString(1, getId());
+            stm.setString(1, getRa());
             stm.setString(2, getHours());
             stm.setString(3, getDesc());
             stm.execute();
@@ -218,12 +214,12 @@ public void loadLogin(Connection conn){
     }
 }
 public void loadHours(Connection conn){
-    String sqlSelect = "SELECT id, hours, description FROM hours WHERE login_id = ?";
+    String sqlSelect = "SELECT id, hours, description FROM hours WHERE login_ra = ?";
     PreparedStatement stm = null;
     ResultSet rs = null;
     try {
         stm = conn.prepareStatement(sqlSelect);
-        stm.setString(1, getId());
+        stm.setString(1, getRa());
         rs = stm.executeQuery();
         while (rs.next()) {
             setId_hours(rs.getString(1));
