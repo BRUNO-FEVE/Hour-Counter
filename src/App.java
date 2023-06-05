@@ -204,12 +204,10 @@ public class App extends  JFrame implements ActionListener{
         // StopWatch Actions 
         if (e.getSource() == stopWatchContent.getSendButton()) {
             if (!stopWatchContent.textFieldDescricao.getText().isEmpty()) {
-                if (stopWatchContent.labelCronometro.equals("00:00:00")) {
+                if (true) {
                     Object[] newTask = {this.hourData.size()+1, stopWatchContent.textFieldDescricao.getText(), stopWatchContent.labelCronometro.getText(), this.userData[1]};
                     this.hourData.add(newTask);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Tempo minimo não atingido!", "Aviso", JOptionPane.WARNING_MESSAGE);
-                }
+                } 
             } else {
                 JOptionPane.showMessageDialog(null, "Prencha a DESCRIÇÃO os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
