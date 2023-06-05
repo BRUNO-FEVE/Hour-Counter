@@ -1,4 +1,6 @@
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import back.sql.ConectDB;
 import back.sql.JDBC;
@@ -14,15 +16,22 @@ public class Test_sql {
             pessoa.insertLogin(conn);
             System.out.println(pessoa);
             System.out.println("Conectado!");*/
-            /*JDBC horas = new JDBC("3", "2", "Feito att");
-            horas.insertHours(conn);
-            System.out.println(horas);
-            System.out.println("Conectado!");*/
-            JDBC pessoa2 = new JDBC("12", "123");
-            System.out.println(pessoa2.loadLogin(conn));
-            System.out.println(pessoa2);
-            System.out.println("Conectado!");
-            System.out.println("Nome: " + pessoa2.getName() + "\nSenha: " + pessoa2.getPassword() + "\nRA: " + pessoa2.getRa() + "\nArea: " + pessoa2.getArea() + "\nProjeto: " + pessoa2.getProject() + "\nEntidade: " + pessoa2.getEntity() + "\nid:"  + pessoa2.getId());
+            //JDBC horas1 = new JDBC("123", "123", "asda att");
+           // horas1.insertHours(conn);
+            JDBC horas = new JDBC("123");
+            ArrayList<Object[]> hoursList = new ArrayList<>();
+            hoursList = horas.loadHours(conn);
+            for (Object[] row : hoursList) {
+                System.out.println(Arrays.toString(row));
+            }
+            // System.out.println(horas);
+            // System.out.println("Conectado!");
+            //System.out.println("RA: " + horas.getRa() + "\nHoras: " + horas.getHours() + "\nDescrição: " + horas.getDesc() + "\nid:"  + horas.getId_hours());
+             // pessoa2 = new JDBC("12", "123");
+            // System.out.println(pessoa2.loadLogin(conn));
+             //System.out.println(pessoa2);
+            // System.out.println("Conectado!");
+            //System.out.println("Nome: " + pessoa2.getName() + "\nSenha: " + pessoa2.getPassword() + "\nRA: " + pessoa2.getRa() + "\nArea: " + pessoa2.getArea() + "\nProjeto: " + pessoa2.getProject() + "\nEntidade: " + pessoa2.getEntity() + "\nid:"  + pessoa2.getId());
             
         
         

@@ -1,6 +1,8 @@
 package back.sql;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -40,6 +42,11 @@ public class JDBC {
     this.password = password;
     
     }
+
+    public JDBC(String ra){
+        this.ra = ra;
+               
+        }
 
     public JDBC(String ra, String hours, String desc){
         this.ra = ra;
@@ -223,8 +230,9 @@ public boolean loadLogin(Connection conn){
     }
     return this.userFound;
 }
-public void loadHours(Connection conn){
-    String sqlSelect = "SELECT id, hours, description FROM hours WHERE login_ra = ?";
+public ArrayList<Object[]> loadHours(Connection conn){
+    ArrayList<Object[]> hoursList = new ArrayList<>();
+    String sqlSelect = "SELECT id, description, hours FROM hours WHERE login_ra = ?";
     PreparedStatement stm = null;
     ResultSet rs = null;
     try {
@@ -232,9 +240,12 @@ public void loadHours(Connection conn){
         stm.setString(1, getRa());
         rs = stm.executeQuery();
         while (rs.next()) {
-            setId_hours(rs.getString(1));
-            setHours(rs.getString(2));
-            setDesc(rs.getString(3));
+            
+            String id = rs.getString(1);
+            String description = rs.getString(2);
+            String hour = rs.getString(3);
+            String[] hourData = {id,description,hour};
+            hoursList.add(hourData);
         }
     }
     catch (Exception e) {
@@ -256,7 +267,9 @@ public void loadHours(Connection conn){
             }
         }
     }
+    return hoursList;
 }
+
 public void update(Connection conn){
     String sqlUpdate = "UPDATE login SET name = ?, password = ?, ra = ?, entity = ?, area = ?, project = ?" + "WHERE id = ?";
     PreparedStatement stm = null;

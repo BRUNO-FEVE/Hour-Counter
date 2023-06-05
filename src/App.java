@@ -124,6 +124,12 @@ public class App extends  JFrame implements ActionListener{
 
     public void updatePage(PageModel page) {
         if (page == hourViewContent) {
+            JDBC hoursDataList = new JDBC(this.userData[1].toString());
+
+            for (Object[] hour : hoursDataList.loadHours(conn)) {
+                this.hourData.add(hour);
+            }
+
             hourViewContent.setUserData(this.hourData, this.userData);
         }
 
