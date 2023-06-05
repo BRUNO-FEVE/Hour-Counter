@@ -2,6 +2,8 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -9,6 +11,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import back.sql.ConectDB;
+import back.sql.JDBC;
 import components.PageModel;
 import pages.HourViewPage;
 import pages.LoginPage;
@@ -44,8 +48,14 @@ public class App extends  JFrame implements ActionListener{
     public HourViewPage hourViewContent;
     public StopwatchPage stopWatchContent;
 
-    public App () {
+    public Connection conn = null;
+    public ConectDB db;
+
+    public App () throws SQLException {
         setTitle(title);
+
+        this.db = new ConectDB();
+        this.conn = db.conect();
 
         caixa = getContentPane();
         caixa.setLayout(new FlowLayout());
@@ -174,7 +184,13 @@ public class App extends  JFrame implements ActionListener{
             boolean hasArea = !registerContent.areaField.getText().isEmpty();
             boolean hasProject = !registerContent.projectField.getText().isEmpty();
             boolean hasPassword = new String(registerContent.passwordField.getPassword()).length() > 0;
-            boolean hasConfirmed = new String(registerContent.confirmField.getPassword()).length() > 0;            
+            boolean hasConfirmed = new String(registerContent.confirmField.getPassword()).length() > 0;     
+            
+            try {
+                JDBC newUser = new JDBC(registerContent.getNewUser());
+            } catch (Exception exc) {
+
+            }
 
             if (hasName && hasRa && hasEntity && hasArea && hasProject && hasPassword && hasConfirmed) {
                 if (new String(registerContent.passwordField.getPassword()).equals(new String(registerContent.confirmField.getPassword()))) {

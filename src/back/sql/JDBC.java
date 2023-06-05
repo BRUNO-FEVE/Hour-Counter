@@ -21,13 +21,13 @@ public class JDBC {
     public JDBC()
     {
     } 
-    public JDBC(String name, String password, String ra, String entity, String area, String project){
-    this.name = name;
-    this.password = password;
-    this.ra = ra;
-    this.entity = entity;
-    this.area = area;
-    this.project = project;
+    public JDBC(Object[] newUser){
+    this.name = newUser[0].toString();
+    this.password = newUser[5].toString();
+    this.ra = newUser[1].toString();
+    this.entity = newUser[2].toString();
+    this.area = newUser[3].toString();
+    this.project = newUser[4].toString();
     }
 
     public JDBC(String ra, String password){
@@ -231,7 +231,6 @@ public void loadHours(Connection conn){
             setId_hours(rs.getString(1));
             setHours(rs.getString(2));
             setDesc(rs.getString(3));
-            
         }
     }
     catch (Exception e) {
