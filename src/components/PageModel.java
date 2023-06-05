@@ -45,6 +45,22 @@ public class PageModel {
         return this.exit;
     }
 
+    public JMenuItem getBackMenuItem() {
+        return this.back;
+    }
+
+    public JMenuItem getMenuMenuItem() {
+        return this.menu;
+    }
+
+    public JMenuItem getViewHourMenuItem() {
+        return this.viewHour;
+    }
+
+    public JMenuItem getStopWatchMenuItem() {
+        return this.createHours;
+    }
+
     public JPanel getScreanContent() {
         return this.caixa;
     }

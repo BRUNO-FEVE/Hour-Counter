@@ -74,6 +74,10 @@ public class App extends  JFrame implements ActionListener{
 
         menuContent.exit.addActionListener(this);
         hourViewContent.exit.addActionListener(this);
+        stopWatchContent.exit.addActionListener(this);
+
+        hourViewContent.back.addActionListener(this);
+        stopWatchContent.back.addActionListener(this);
 
         this.content = loginPanel;
         caixa.add(content);
@@ -180,8 +184,10 @@ public class App extends  JFrame implements ActionListener{
         }
 
         // Menu Bar
-        if (e.getSource() == menuContent.getExitMenuItem() || e.getSource() == hourViewContent.getExitMenuItem()) {
+        if (e.getSource() == menuContent.getExitMenuItem() || e.getSource() == hourViewContent.getExitMenuItem() || e.getSource() == stopWatchContent.getExitMenuItem()) {
             this.updatePage(loginContent);
+        } else if (e.getSource() == hourViewContent.getBackMenuItem() || e.getSource() == stopWatchContent.getBackMenuItem()) {
+            this.updatePage(menuContent);
         }
 
 
