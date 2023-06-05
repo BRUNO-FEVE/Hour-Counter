@@ -19,6 +19,7 @@ import pages.UserMenuPage;
 public class App extends  JFrame implements ActionListener{
 
     public String title = "Login";
+
     public JPanel content, loginPanel, registerPanel, menuPanel, hourViewPanel, stopWatchPanel;
     public Container caixa;
     public JMenuBar menuBar;
@@ -72,6 +73,7 @@ public class App extends  JFrame implements ActionListener{
         registerContent.registerButton.addActionListener(this);
         menuContent.showHourButton.addActionListener(this);
         menuContent.registerHourButton.addActionListener(this);
+        stopWatchContent.buttonEnviar.addActionListener(this);
 
         menuContent.exit.addActionListener(this);
         hourViewContent.exit.addActionListener(this);
@@ -197,6 +199,16 @@ public class App extends  JFrame implements ActionListener{
             this.updatePage(hourViewContent);
         } else if (e.getSource() == menuContent.getRegisterButton()) {
             this.updatePage(stopWatchContent);
+        }
+
+        // StopWatch Actions 
+        if (e.getSource() == stopWatchContent.getSendButton()) {
+            if (!stopWatchContent.textFieldDescricao.getText().isEmpty()) {
+                Object[] newTask = {this.hourData.size()+1, stopWatchContent.textFieldDescricao.getText(), stopWatchContent.labelCronometro.getText(), this.userData[1]};
+                this.hourData.add(newTask);
+            } else {
+                JOptionPane.showMessageDialog(null, "Prencha a DESCRIÇÃO os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
         }
 
         // Menu Bar

@@ -11,12 +11,12 @@ import java.awt.event.ActionListener;
 
 public class StopwatchPage extends PageModel {
 
-    private JLabel labelCronometro;
+    public JLabel labelCronometro;
     private JLabel labelDescricao;
-    private JTextField textFieldDescricao;
+    public JTextField textFieldDescricao;
     private JButton buttonStart;
     private JButton buttonStop;
-    private JButton buttonEnviar;
+    public JButton buttonEnviar;
     private Timer timer;
     private long startTime;
 
@@ -87,6 +87,10 @@ public class StopwatchPage extends PageModel {
                 enviar();
             }
         });
+    }
+
+    public JButton getSendButton() {
+        return this.buttonEnviar;
     }
 
     private void startCronometro() {
