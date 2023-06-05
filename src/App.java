@@ -11,6 +11,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import java.sql.SQLException;
+
+import java.sql.Connection;
 import back.sql.ConectDB;
 import back.sql.JDBC;
 import components.PageModel;
@@ -158,20 +161,13 @@ public class App extends  JFrame implements ActionListener{
             this.updatePage(registerContent);
             loginContent.cleanFields();
         } else if (e.getSource() == loginContent.getLoginButton()) {
-            boolean isLogged = false;
-            this.addUserToDataBase(this.userTest); // Test
-            for (Object[] user : data) {
-                if (loginContent.raField.getText().equals(user[1]) && new String(loginContent.passwordField.getPassword()).equals(user[5])) {
-                    menuContent.setUserData(user);
-                    this.userData = user;
-                    this.updatePage(menuContent);
-                    isLogged = true;
+            JDBC loginUser = new JDBC(loginContent.raField.getText(), new String(loginContent.passwordField.getPassword()));
 
-                    loginContent.cleanFields();
-                } 
-            }
-            if (!isLogged) {
-                JOptionPane.showMessageDialog(null, "Ra ou senha foram digitados errados!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            if (loginUser.loadLogin(conn)) {
+                this.userData = new Object[] {loginUser.getName(), loginUser.getRa(), loginUser.getEntity(), loginUser.getArea(), loginUser.getProject(), loginUser.getId()};
+                this.updatePage(menuContent);
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha ou Ra incorretos!", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         }
 
@@ -186,18 +182,22 @@ public class App extends  JFrame implements ActionListener{
             boolean hasPassword = new String(registerContent.passwordField.getPassword()).length() > 0;
             boolean hasConfirmed = new String(registerContent.confirmField.getPassword()).length() > 0;     
             
-            try {
-                JDBC newUser = new JDBC(registerContent.getNewUser());
-                newUser.insertLogin(conn);
-
-            } catch (Exception exc) {
-
-            }
-
             if (hasName && hasRa && hasEntity && hasArea && hasProject && hasPassword && hasConfirmed) {
                 if (new String(registerContent.passwordField.getPassword()).equals(new String(registerContent.confirmField.getPassword()))) {
                     this.addUserToDataBase(registerContent.getNewUser());
                     this.updatePage(loginContent);
+
+                    try {
+                        JDBC newUser = new JDBC(registerContent.getNewUser());
+                        newUser.insertLogin(conn);
+                    }finally{
+                        if(conn != null){
+                        try{
+                            conn.close();
+                        }catch(SQLException e1){
+                            System.out.print(e1.getStackTrace());
+                        }}
+                    }
                     
                     registerContent.cleanFields();
                 } else {

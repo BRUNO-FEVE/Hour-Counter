@@ -18,7 +18,8 @@ public class TestSql {
                 "Portal Interno",
                 "123", 
             });
-            pessoa.insertLogin(conn);
+            pessoa.insertLogin(conn); 
+            
             System.out.println(pessoa);
             System.out.println("Conectado!");
             /*JDBC horas = new JDBC("3", "2", "Feito att");

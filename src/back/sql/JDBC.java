@@ -1,6 +1,9 @@
 package back.sql;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -17,10 +20,12 @@ public class JDBC {
     private String id_hours;
     private String hours;
     private String desc;
+
+    public boolean userFound = false;
     
-    public JDBC()
-    {
+    public JDBC() {
     } 
+
     public JDBC(Object[] newUser){
     this.name = newUser[0].toString();
     this.password = newUser[5].toString();
@@ -72,6 +77,9 @@ public class JDBC {
     }
     public String getId_hours(){
         return id_hours;
+    }
+    public boolean getUserFound() {
+        return this.userFound;
     }
 
     
@@ -177,7 +185,7 @@ public void insertHours(Connection conn){
     }
 }
     
-public void loadLogin(Connection conn){
+public boolean loadLogin(Connection conn){
     String sqlSelect = "SELECT name, password, entity, area, project, ra, id FROM login WHERE ra = ? AND PASSWORD = ?";
     PreparedStatement stm = null;
     ResultSet rs = null;
@@ -195,18 +203,13 @@ public void loadLogin(Connection conn){
             setProject(rs.getString(5));
             setRa(rs.getString(6));
             setId(rs.getString(7));
-            
-
+            this.userFound = true;
         }
+        
     }
     catch (Exception e) {
         e.printStackTrace();
-        try {
-            conn.rollback();
-        }
-        catch (SQLException e1) {
-            System.out.print(e1.getStackTrace());
-        }
+        return false;
     }
     finally {
         if (stm != null) {
@@ -218,6 +221,7 @@ public void loadLogin(Connection conn){
             }
         }
     }
+    return this.userFound;
 }
 public void loadHours(Connection conn){
     String sqlSelect = "SELECT id, hours, description FROM hours WHERE login_ra = ?";
