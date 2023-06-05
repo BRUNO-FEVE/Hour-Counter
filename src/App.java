@@ -156,7 +156,6 @@ public class App extends  JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         // Login Page Actions
-
         if (e.getSource() == loginContent.getRegisterButton()) {
             this.updatePage(registerContent);
             loginContent.cleanFields();
@@ -165,6 +164,7 @@ public class App extends  JFrame implements ActionListener{
 
             if (loginUser.loadLogin(conn)) {
                 this.userData = new Object[] {loginUser.getName(), loginUser.getRa(), loginUser.getEntity(), loginUser.getArea(), loginUser.getProject(), loginUser.getId()};
+                menuContent.setUserData(this.userData);
                 this.updatePage(menuContent);
             } else {
                 JOptionPane.showMessageDialog(null, "Senha ou Ra incorretos!", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -210,9 +210,6 @@ public class App extends  JFrame implements ActionListener{
 
         // Menu Page Actions 
         if (e.getSource() == menuContent.getHourViewButton()) {
-            // Test
-            
-
             this.updatePage(hourViewContent);
         } else if (e.getSource() == menuContent.getRegisterButton()) {
             this.updatePage(stopWatchContent);
