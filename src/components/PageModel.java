@@ -1,5 +1,4 @@
 package components;
-import java.awt.Container;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -13,6 +12,8 @@ public class PageModel {
     public JPanel caixa;
     public JMenuBar menuBar;
 
+    public JMenuItem back, exit, menu, viewHour, createHours; 
+
     public PageModel() {
         this.caixa = new JPanel();
 
@@ -21,12 +22,12 @@ public class PageModel {
         JMenu fileMenu = new JMenu("Menu");
         JMenu pagesMenu = new JMenu("Paginas");
 
-        JMenuItem back = new JMenuItem("Voltar");
-        JMenuItem exit = new JMenuItem("Sair");
+        back = new JMenuItem("Voltar");
+        exit = new JMenuItem("Sair");
 
-        JMenuItem menu = new JMenuItem("Menu");
-        JMenuItem viewHour = new JMenuItem("Histórico");
-        JMenuItem createHours = new JMenuItem("Salvar Horas");
+        menu = new JMenuItem("Menu");
+        viewHour = new JMenuItem("Histórico");
+        createHours = new JMenuItem("Salvar Horas");
 
         fileMenu.add(back);
         fileMenu.addSeparator();

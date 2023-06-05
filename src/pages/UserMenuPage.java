@@ -83,11 +83,17 @@ public class UserMenuPage extends PageModel{
         screanLayoutPanel.add(userDataPanel);
         screanLayoutPanel.add(buttonsPanel);
 
+        super.back.setVisible(false);
+
         super.caixa.add(screanLayoutPanel);
     }
 
     public boolean setVisible(boolean visible) {
         return this.visible = visible;
+    }
+
+    public JButton getHourViewButton() {
+        return this.showHourButton;
     }
 
     public void setUserData(Object[] dataList) {

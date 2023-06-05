@@ -1,9 +1,7 @@
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,9 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.xml.crypto.Data;
 
 import components.PageModel;
+import pages.HourViewPage;
 import pages.LoginPage;
 import pages.RegisterPage;
 import pages.UserMenuPage;
@@ -21,11 +19,13 @@ import pages.UserMenuPage;
 public class App extends  JFrame implements ActionListener{
 
     public String title = "Login";
-    public JPanel content, loginPanel, registerPanel, menuPanel;
+    public JPanel content, loginPanel, registerPanel, menuPanel, hourViewPanel;
     public Container caixa;
     public JMenuBar menuBar;
 
     private ArrayList<Object[]> data = new ArrayList<>();
+    private ArrayList<Object[]> hourData = new ArrayList<>();
+    private Object[] userData;
 
     private Object[] userTest = new Object[] {
         "Bruno Augusto Lopes Fevereiro",
@@ -33,12 +33,13 @@ public class App extends  JFrame implements ActionListener{
         "Dev. Community Mauá",
         "Front-End",
         "Portal Interno",
-        "123"
+        "123", 
     };
 
     public LoginPage loginContent;
     public RegisterPage registerContent;
     public UserMenuPage menuContent;
+    public HourViewPage hourViewContent;
 
     public App () {
         setTitle(title);
@@ -49,18 +50,22 @@ public class App extends  JFrame implements ActionListener{
         loginContent = new LoginPage();
         registerContent = new RegisterPage();
         menuContent = new UserMenuPage();
+        hourViewContent = new HourViewPage();
 
         loginPanel = new JPanel();
         registerPanel = new JPanel();
         menuPanel = new JPanel();
+        hourViewPanel = new JPanel();
 
         loginPanel.add(loginContent.getScreanContent());
         registerPanel.add(registerContent.getScreanContent());
         menuPanel.add(menuContent.getScreanContent());
+        hourViewPanel.add(hourViewContent.getScreanContent());
 
         loginContent.registerButton.addActionListener(this);
         loginContent.loginButton.addActionListener(this);
         registerContent.registerButton.addActionListener(this);
+        menuContent.showHourButton.addActionListener(this);
 
         this.content = loginPanel;
         caixa.add(content);
@@ -105,6 +110,9 @@ public class App extends  JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        // Login Page Actions
+
         if (e.getSource() == loginContent.getRegisterButton()) {
             this.updatePage(registerContent);
 
@@ -114,14 +122,19 @@ public class App extends  JFrame implements ActionListener{
             for (Object[] user : data) {
                 if (loginContent.raField.getText().equals(user[1]) && new String(loginContent.passwordField.getPassword()).equals(user[5])) {
                     menuContent.setUserData(user);
+                    this.userData = user;
                     this.updatePage(menuContent);
                     isLogged = true;
+
+                    System.out.println(Arrays.toString(userData));
                 } 
             }
             if (!isLogged) {
                 JOptionPane.showMessageDialog(null, "Ra ou senha foram digitados errados!", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         }
+
+        // Register Page Actions 
 
         if (e.getSource() == registerContent.getRegisterButton()) {
             boolean hasName = !registerContent.nameField.getText().isEmpty();
@@ -135,7 +148,6 @@ public class App extends  JFrame implements ActionListener{
             if (hasName && hasRa && hasEntity && hasArea && hasProject && hasPassword && hasConfirmed) {
                 if (new String(registerContent.passwordField.getPassword()).equals(new String(registerContent.confirmField.getPassword()))) {
                     this.addUserToDataBase(registerContent.getNewUser());
-                    System.out.println(Arrays.toString(registerContent.getNewUser()));
                     this.updatePage(loginContent);
                 } else {
                     JOptionPane.showMessageDialog(null, "As senhas digitadas são DIFERENTES!", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -144,5 +156,16 @@ public class App extends  JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Prencha TODOS os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         }
+
+        // Menu Page Actions 
+        if (e.getSource() == menuContent.getHourViewButton()) {
+            // Test
+            Object[] userHourData = {5, "Reunião Planning", "01:50:00", "123"};
+            this.hourData.add(userHourData);
+
+            hourViewContent.setUserData(this.hourData, this.userData);
+            this.updatePage(hourViewContent);
+        }
+
     }
 }
