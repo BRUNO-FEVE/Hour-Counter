@@ -17,7 +17,7 @@ public class Test_sql {
             System.out.println(pessoa);
             System.out.println("Conectado!");*/
             //JDBC horas1 = new JDBC("123", "123", "asda att");
-           // horas1.insertHours(conn);
+            //horas1.insertHours(conn);
             JDBC horas = new JDBC("123");
             ArrayList<Object[]> hoursList = new ArrayList<>();
             hoursList = horas.loadHours(conn);

@@ -45,7 +45,6 @@ public class JDBC {
 
     public JDBC(String ra){
         this.ra = ra;
-               
         }
 
     public JDBC(String ra, String hours, String desc){

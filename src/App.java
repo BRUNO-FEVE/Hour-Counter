@@ -124,8 +124,9 @@ public class App extends  JFrame implements ActionListener{
 
     public void updatePage(PageModel page) {
         if (page == hourViewContent) {
-            JDBC hoursDataList = new JDBC(this.userData[1].toString());
+            this.hourData.clear();
 
+            JDBC hoursDataList = new JDBC(this.userData[1].toString());
             for (Object[] hour : hoursDataList.loadHours(conn)) {
                 this.hourData.add(hour);
             }
@@ -225,8 +226,8 @@ public class App extends  JFrame implements ActionListener{
         if (e.getSource() == stopWatchContent.getSendButton()) {
             if (!stopWatchContent.textFieldDescricao.getText().isEmpty()) {
                 if (true) {
-                    Object[] newTask = {this.hourData.size()+1, stopWatchContent.textFieldDescricao.getText(), stopWatchContent.labelCronometro.getText(), this.userData[1]};
-                    this.hourData.add(newTask);
+                    JDBC newHour = new JDBC(this.userData[1].toString(), stopWatchContent.labelCronometro.getText(), stopWatchContent.textFieldDescricao.getText());
+                    newHour.insertHours(conn);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Prencha a DESCRIÇÃO os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
