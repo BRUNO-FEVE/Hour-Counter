@@ -180,20 +180,11 @@ public class App extends  JFrame implements ActionListener{
             if (hasName && hasRa && hasEntity && hasArea && hasProject && hasPassword && hasConfirmed) {
                 if (new String(registerContent.passwordField.getPassword()).equals(new String(registerContent.confirmField.getPassword()))) {
                     this.addUserToDataBase(registerContent.getNewUser());
-                    this.updatePage(loginContent);
-
-                    try {
-                        JDBC newUser = new JDBC(registerContent.getNewUser());
-                        newUser.insertLogin(conn);
-                    }finally{
-                        if(conn != null){
-                        try{
-                            conn.close();
-                        }catch(SQLException e1){
-                            System.out.print(e1.getStackTrace());
-                        }}
-                    }
                     
+                    JDBC newUser = new JDBC(registerContent.getNewUser());
+                    newUser.insertLogin(conn);
+
+                    this.updatePage(loginContent);
                     registerContent.cleanFields();
                 } else {
                     JOptionPane.showMessageDialog(null, "As senhas digitadas são DIFERENTES!", "Aviso", JOptionPane.WARNING_MESSAGE);
