@@ -8,10 +8,9 @@ import javax.swing.JPanel;
 
 public class PageModel {
     
-    public String superTitle;
+    public String superTitle, pageId;
     public JPanel caixa;
     public JMenuBar menuBar;
-
     public JMenuItem back, exit, menu, viewHour, createHours; 
 
     public PageModel() {
@@ -39,6 +38,14 @@ public class PageModel {
         
         menuBar.add(fileMenu);
         menuBar.add(pagesMenu);
+    }
+
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
+    }
+
+    public String getPageId() {
+        return this.pageId;
     }
 
     public JMenuItem getExitMenuItem() {

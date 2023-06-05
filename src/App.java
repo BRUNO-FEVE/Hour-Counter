@@ -18,7 +18,7 @@ import pages.UserMenuPage;
 
 public class App extends  JFrame implements ActionListener{
 
-    public String title = "Login";
+    public String title = "Login", lastPage = "";
     public JPanel content, loginPanel, registerPanel, menuPanel, hourViewPanel, stopWatchPanel;
     public Container caixa;
     public JMenuBar menuBar;
@@ -100,7 +100,7 @@ public class App extends  JFrame implements ActionListener{
         this.content = page.getScreanContent();
         this.menuBar = page.menuBar;
         this.title = page.superTitle;
-        
+
         this.caixa.removeAll();
         this.caixa.add(content);
 
@@ -179,15 +179,30 @@ public class App extends  JFrame implements ActionListener{
 
             hourViewContent.setUserData(this.hourData, this.userData);
             this.updatePage(hourViewContent);
+            this.lastPage = menuContent.getPageId();
         } else if (e.getSource() == menuContent.getRegisterButton()) {
             this.updatePage(stopWatchContent);
+            this.lastPage = menuContent.getPageId();
         }
 
         // Menu Bar
         if (e.getSource() == menuContent.getExitMenuItem() || e.getSource() == hourViewContent.getExitMenuItem() || e.getSource() == stopWatchContent.getExitMenuItem()) {
             this.updatePage(loginContent);
         } else if (e.getSource() == hourViewContent.getBackMenuItem() || e.getSource() == stopWatchContent.getBackMenuItem()) {
-            this.updatePage(menuContent);
+            System.out.println(lastPage);
+            switch (this.lastPage) {
+                case "0":
+                    this.updatePage(menuContent);
+                    break;
+                case "1":
+                    this.updatePage(hourViewContent);
+                    break;
+                case "2":
+                    this.updatePage(stopWatchContent);
+                    break;
+                default:
+                    break;
+            }
         }
 
 

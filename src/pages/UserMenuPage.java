@@ -16,6 +16,7 @@ public class UserMenuPage extends PageModel{
 
     public UserMenuPage() {
         super.superTitle = "Menu";
+        super.pageId = "0";
 
         message = new JLabel("Seus Dados:");
         userNameLabel = new JLabel("Nome:");
@@ -83,7 +84,6 @@ public class UserMenuPage extends PageModel{
         screanLayoutPanel.add(userDataPanel);
         screanLayoutPanel.add(buttonsPanel);
 
-        super.back.setVisible(false);
         super.menu.setVisible(false);
 
         super.caixa.add(screanLayoutPanel);

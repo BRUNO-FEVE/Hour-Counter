@@ -30,6 +30,7 @@ public class HourViewPage extends PageModel{
 
     public HourViewPage() {
         super.superTitle = "Histórico";
+        super.pageId = "1";
 
         totalHoursMessageLabel = new JLabel("Horas Totais: ");
         tabelMassageLabel = new JLabel("Suas ultimas Tarefas:");

@@ -22,6 +22,8 @@ public class StopwatchPage extends PageModel {
 
     public StopwatchPage() {
         super.superTitle = "Salvar Horas";
+        super.pageId = "2";
+
 
         super.caixa.setLayout(new BorderLayout());
 
