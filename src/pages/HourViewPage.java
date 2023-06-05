@@ -17,7 +17,6 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
-
 public class HourViewPage extends PageModel{
     
     private JLabel totalHoursMessageLabel, tabelMassageLabel, totalHoursLabel, redLabel, greenLabel;
@@ -180,15 +179,10 @@ public class HourViewPage extends PageModel{
 
     public void setUserData(ArrayList<Object[]> data, Object[] user) {
         tableData.clear();
-        Object[] userHourData = {5, "Reunião Planning", "01:50:00", "123"};
         tableData.add(columnName);
-        tableData.add(userHourData);
-        
 
-        for (Object[] task : data) {
-            if (task[3].equals(user[1])) {
-                tableData.add(task);
-            }
+        for (Object[] hour : data) {
+            tableData.add(hour);
         }
 
         this.setTotalHours(tableData);
