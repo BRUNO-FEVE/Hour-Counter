@@ -77,6 +77,7 @@ public class App extends  JFrame implements ActionListener{
         hourViewContent.exit.addActionListener(this);
         stopWatchContent.exit.addActionListener(this);
 
+        menuContent.back.addActionListener(this);
         hourViewContent.back.addActionListener(this);
         stopWatchContent.back.addActionListener(this);
 
@@ -86,7 +87,8 @@ public class App extends  JFrame implements ActionListener{
         hourViewContent.createHours.addActionListener(this);
         hourViewContent.menu.addActionListener(this);
 
-
+        stopWatchContent.menu.addActionListener(this);
+        stopWatchContent.viewHour.addActionListener(this);
 
         this.content = loginPanel;
         caixa.add(content);
@@ -200,15 +202,15 @@ public class App extends  JFrame implements ActionListener{
         // Menu Bar
         if (e.getSource() == menuContent.getExitMenuItem() || e.getSource() == hourViewContent.getExitMenuItem() || e.getSource() == stopWatchContent.getExitMenuItem()) {
             this.updatePage(loginContent);
-        } else if (e.getSource() == hourViewContent.getBackMenuItem() || e.getSource() == stopWatchContent.getBackMenuItem()) {
+        } else if (e.getSource() == hourViewContent.getBackMenuItem() || e.getSource() == stopWatchContent.getBackMenuItem() || e.getSource() == menuContent.getBackMenuItem()) {
             this.updatePage(this.lastPages.get(this.lastPages.size()-2));
         }
 
         if (e.getSource() == menuContent.createHours || e.getSource() == hourViewContent.createHours) {
             this.updatePage(stopWatchContent);
-        } else if (e.getSource() == menuContent.viewHour) {
+        } else if (e.getSource() == menuContent.viewHour || e.getSource() == stopWatchContent.viewHour) {
             this.updatePage(hourViewContent);
-        } else if (e.getSource() == hourViewContent.menu) {
+        } else if (e.getSource() == hourViewContent.menu || e.getSource() == stopWatchContent.menu) {
             this.updatePage(menuContent);
         }
 

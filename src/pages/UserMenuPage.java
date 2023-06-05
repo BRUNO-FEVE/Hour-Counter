@@ -101,6 +101,10 @@ public class UserMenuPage extends PageModel{
         return this.registerHourButton;
     }
 
+    public JMenuItem getBackMenuItem() {
+        return this.back;
+    }
+
     public void setUserData(Object[] dataList) {
         this.dataList = dataList;
         this.nameData.setText(this.dataList[0].toString());
