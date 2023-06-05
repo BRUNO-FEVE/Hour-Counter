@@ -20,8 +20,8 @@ public class StopwatchPage extends PageModel {
     private Timer timer;
     private long startTime;
 
-    public StopwatchPage(String superTitle, Container caixa) {
-        super(superTitle, caixa);
+    public StopwatchPage() {
+        super.superTitle = "Salvar Horas";
 
         super.caixa.setLayout(new BorderLayout());
 

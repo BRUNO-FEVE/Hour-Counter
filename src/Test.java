@@ -1,9 +1,3 @@
-import javax.swing.JPanel;
-
-import pages.LoginPage;
-import pages.RegisterPage;
-import pages.UserMenuPage;
-
 public class Test {
     public static void main(String[] args){
         //new RegisterPage();
@@ -23,7 +17,6 @@ public class Test {
         //new Application(login, menu, register);
 
         //new HourViewPage(columnNameList, userData, "40:00:00");
-
-        App app = new App();
+        new App();
     }
 }

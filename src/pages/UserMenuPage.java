@@ -97,6 +97,10 @@ public class UserMenuPage extends PageModel{
         return this.showHourButton;
     }
 
+    public JButton getRegisterButton() {
+        return this.registerHourButton;
+    }
+
     public void setUserData(Object[] dataList) {
         this.dataList = dataList;
         this.nameData.setText(this.dataList[0].toString());

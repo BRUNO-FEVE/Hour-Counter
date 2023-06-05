@@ -13,12 +13,13 @@ import components.PageModel;
 import pages.HourViewPage;
 import pages.LoginPage;
 import pages.RegisterPage;
+import pages.StopwatchPage;
 import pages.UserMenuPage;
 
 public class App extends  JFrame implements ActionListener{
 
     public String title = "Login";
-    public JPanel content, loginPanel, registerPanel, menuPanel, hourViewPanel;
+    public JPanel content, loginPanel, registerPanel, menuPanel, hourViewPanel, stopWatchPanel;
     public Container caixa;
     public JMenuBar menuBar;
 
@@ -39,6 +40,7 @@ public class App extends  JFrame implements ActionListener{
     public RegisterPage registerContent;
     public UserMenuPage menuContent;
     public HourViewPage hourViewContent;
+    public StopwatchPage stopWatchContent;
 
     public App () {
         setTitle(title);
@@ -50,21 +52,25 @@ public class App extends  JFrame implements ActionListener{
         registerContent = new RegisterPage();
         menuContent = new UserMenuPage();
         hourViewContent = new HourViewPage();
+        stopWatchContent = new StopwatchPage();
 
         loginPanel = new JPanel();
         registerPanel = new JPanel();
         menuPanel = new JPanel();
         hourViewPanel = new JPanel();
+        stopWatchPanel = new JPanel();
 
         loginPanel.add(loginContent.getScreanContent());
         registerPanel.add(registerContent.getScreanContent());
         menuPanel.add(menuContent.getScreanContent());
         hourViewPanel.add(hourViewContent.getScreanContent());
+        stopWatchPanel.add(stopWatchContent.getScreanContent());
 
         loginContent.registerButton.addActionListener(this);
         loginContent.loginButton.addActionListener(this);
         registerContent.registerButton.addActionListener(this);
         menuContent.showHourButton.addActionListener(this);
+        menuContent.registerHourButton.addActionListener(this);
 
         menuContent.exit.addActionListener(this);
         hourViewContent.exit.addActionListener(this);
@@ -117,7 +123,7 @@ public class App extends  JFrame implements ActionListener{
 
         if (e.getSource() == loginContent.getRegisterButton()) {
             this.updatePage(registerContent);
-
+            loginContent.cleanFields();
         } else if (e.getSource() == loginContent.getLoginButton()) {
             boolean isLogged = false;
             this.addUserToDataBase(this.userTest); // Test
@@ -169,6 +175,8 @@ public class App extends  JFrame implements ActionListener{
 
             hourViewContent.setUserData(this.hourData, this.userData);
             this.updatePage(hourViewContent);
+        } else if (e.getSource() == menuContent.getRegisterButton()) {
+            this.updatePage(stopWatchContent);
         }
 
         // Menu Bar
