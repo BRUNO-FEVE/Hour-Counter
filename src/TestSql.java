@@ -4,7 +4,7 @@ import back.sql.ConectDB;
 import back.sql.JDBC;
 import java.sql.Connection;
 
-public class Teste {
+public class TestSql {
     public static void main(String[] args){
         Connection conn = null;
         try{
