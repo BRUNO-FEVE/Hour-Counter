@@ -180,7 +180,10 @@ public class HourViewPage extends PageModel{
 
     public void setUserData(ArrayList<Object[]> data, Object[] user) {
         tableData.clear();
+        Object[] userHourData = {5, "Reunião Planning", "01:50:00", "123"};
         tableData.add(columnName);
+        tableData.add(userHourData);
+        
 
         for (Object[] task : data) {
             if (task[3].equals(user[1])) {
@@ -188,7 +191,7 @@ public class HourViewPage extends PageModel{
             }
         }
 
-        this.setTotalHours(data);
+        this.setTotalHours(tableData);
         this.hourHistoricTable.setModel(new HourViewTableModel(columnName, tableData));
 
         for (int i = 0; i < hourHistoricTable.getColumnCount(); i++) {

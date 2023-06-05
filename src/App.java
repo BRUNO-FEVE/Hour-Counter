@@ -193,8 +193,7 @@ public class App extends  JFrame implements ActionListener{
         // Menu Page Actions 
         if (e.getSource() == menuContent.getHourViewButton()) {
             // Test
-            Object[] userHourData = {5, "Reunião Planning", "01:50:00", "123"};
-            this.hourData.add(userHourData);
+            
 
             this.updatePage(hourViewContent);
         } else if (e.getSource() == menuContent.getRegisterButton()) {
@@ -204,11 +203,9 @@ public class App extends  JFrame implements ActionListener{
         // StopWatch Actions 
         if (e.getSource() == stopWatchContent.getSendButton()) {
             if (!stopWatchContent.textFieldDescricao.getText().isEmpty()) {
-                if (stopWatchContent.labelCronometro.equals("00:00:00")) {
+                if (true) {
                     Object[] newTask = {this.hourData.size()+1, stopWatchContent.textFieldDescricao.getText(), stopWatchContent.labelCronometro.getText(), this.userData[1]};
                     this.hourData.add(newTask);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Tempo minimo não atingido!", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Prencha a DESCRIÇÃO os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
