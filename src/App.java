@@ -2,6 +2,8 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -9,6 +11,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import back.sql.ConectDB;
+import back.sql.JDBC;
 import components.PageModel;
 import pages.HourViewPage;
 import pages.LoginPage;
@@ -29,23 +33,20 @@ public class App extends  JFrame implements ActionListener{
     private ArrayList<PageModel> lastPages = new ArrayList<>();
     private Object[] userData;
 
-    private Object[] userTest = new Object[] {
-        "Bruno Augusto Lopes Fevereiro",
-        "123",
-        "Dev. Community Mauá",
-        "Front-End",
-        "Portal Interno",
-        "123", 
-    };
-
     public LoginPage loginContent;
     public RegisterPage registerContent;
     public UserMenuPage menuContent;
     public HourViewPage hourViewContent;
     public StopwatchPage stopWatchContent;
 
-    public App () {
+    public Connection conn = null;
+    public ConectDB db;
+
+    public App () throws SQLException {
         setTitle(title);
+
+        this.db = new ConectDB();
+        this.conn = db.conect();
 
         caixa = getContentPane();
         caixa.setLayout(new FlowLayout());
@@ -111,6 +112,13 @@ public class App extends  JFrame implements ActionListener{
 
     public void updatePage(PageModel page) {
         if (page == hourViewContent) {
+            this.hourData.clear();
+
+            JDBC hoursDataList = new JDBC(this.userData[1].toString());
+            for (Object[] hour : hoursDataList.loadHours(conn)) {
+                this.hourData.add(hour);
+            }
+
             hourViewContent.setUserData(this.hourData, this.userData);
         }
 
@@ -143,25 +151,18 @@ public class App extends  JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         // Login Page Actions
-
         if (e.getSource() == loginContent.getRegisterButton()) {
             this.updatePage(registerContent);
             loginContent.cleanFields();
         } else if (e.getSource() == loginContent.getLoginButton()) {
-            boolean isLogged = false;
-            this.addUserToDataBase(this.userTest); // Test
-            for (Object[] user : data) {
-                if (loginContent.raField.getText().equals(user[1]) && new String(loginContent.passwordField.getPassword()).equals(user[5])) {
-                    menuContent.setUserData(user);
-                    this.userData = user;
-                    this.updatePage(menuContent);
-                    isLogged = true;
+            JDBC loginUser = new JDBC(loginContent.raField.getText(), new String(loginContent.passwordField.getPassword()));
 
-                    loginContent.cleanFields();
-                } 
-            }
-            if (!isLogged) {
-                JOptionPane.showMessageDialog(null, "Ra ou senha foram digitados errados!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            if (loginUser.loadLogin(conn)) {
+                this.userData = new Object[] {loginUser.getName(), loginUser.getRa(), loginUser.getEntity(), loginUser.getArea(), loginUser.getProject(), loginUser.getId()};
+                menuContent.setUserData(this.userData);
+                this.updatePage(menuContent);
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha ou Ra incorretos!", "Aviso", JOptionPane.WARNING_MESSAGE);
             }
         }
 
@@ -174,12 +175,24 @@ public class App extends  JFrame implements ActionListener{
             boolean hasArea = !registerContent.areaField.getText().isEmpty();
             boolean hasProject = !registerContent.projectField.getText().isEmpty();
             boolean hasPassword = new String(registerContent.passwordField.getPassword()).length() > 0;
-            boolean hasConfirmed = new String(registerContent.confirmField.getPassword()).length() > 0;            
-
+            boolean hasConfirmed = new String(registerContent.confirmField.getPassword()).length() > 0;     
+            
             if (hasName && hasRa && hasEntity && hasArea && hasProject && hasPassword && hasConfirmed) {
                 if (new String(registerContent.passwordField.getPassword()).equals(new String(registerContent.confirmField.getPassword()))) {
                     this.addUserToDataBase(registerContent.getNewUser());
                     this.updatePage(loginContent);
+
+                    try {
+                        JDBC newUser = new JDBC(registerContent.getNewUser());
+                        newUser.insertLogin(conn);
+                    }finally{
+                        if(conn != null){
+                        try{
+                            conn.close();
+                        }catch(SQLException e1){
+                            System.out.print(e1.getStackTrace());
+                        }}
+                    }
                     
                     registerContent.cleanFields();
                 } else {
@@ -192,10 +205,6 @@ public class App extends  JFrame implements ActionListener{
 
         // Menu Page Actions 
         if (e.getSource() == menuContent.getHourViewButton()) {
-            // Test
-            Object[] userHourData = {5, "Reunião Planning", "01:50:00", "123"};
-            this.hourData.add(userHourData);
-
             this.updatePage(hourViewContent);
         } else if (e.getSource() == menuContent.getRegisterButton()) {
             this.updatePage(stopWatchContent);
@@ -204,11 +213,9 @@ public class App extends  JFrame implements ActionListener{
         // StopWatch Actions 
         if (e.getSource() == stopWatchContent.getSendButton()) {
             if (!stopWatchContent.textFieldDescricao.getText().isEmpty()) {
-                if (stopWatchContent.labelCronometro.equals("00:00:00")) {
-                    Object[] newTask = {this.hourData.size()+1, stopWatchContent.textFieldDescricao.getText(), stopWatchContent.labelCronometro.getText(), this.userData[1]};
-                    this.hourData.add(newTask);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Tempo minimo não atingido!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                if (true) {
+                    JDBC newHour = new JDBC(this.userData[1].toString(), stopWatchContent.labelCronometro.getText(), stopWatchContent.textFieldDescricao.getText());
+                    newHour.insertHours(conn);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Prencha a DESCRIÇÃO os campos!", "Aviso", JOptionPane.WARNING_MESSAGE);
