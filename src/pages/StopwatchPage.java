@@ -11,17 +11,19 @@ import java.awt.event.ActionListener;
 
 public class StopwatchPage extends PageModel {
 
-    private JLabel labelCronometro;
+    public JLabel labelCronometro;
     private JLabel labelDescricao;
-    private JTextField textFieldDescricao;
+    public JTextField textFieldDescricao;
     private JButton buttonStart;
     private JButton buttonStop;
-    private JButton buttonEnviar;
+    public JButton buttonEnviar;
     private Timer timer;
     private long startTime;
 
-    public StopwatchPage(String superTitle, Container caixa) {
-        super(superTitle, caixa);
+    public StopwatchPage() {
+        super.superTitle = "Salvar Horas";
+        super.pageId = "2";
+
 
         super.caixa.setLayout(new BorderLayout());
 
@@ -62,6 +64,7 @@ public class StopwatchPage extends PageModel {
         contentPanel.add(descricaoPanel);
         contentPanel.add(enviarPanel);
 
+        super.createHours.setVisible(false);
         super.caixa.add(contentPanel, BorderLayout.CENTER);
 
         buttonStart.addActionListener(new ActionListener() {
@@ -84,6 +87,10 @@ public class StopwatchPage extends PageModel {
                 enviar();
             }
         });
+    }
+
+    public JButton getSendButton() {
+        return this.buttonEnviar;
     }
 
     private void startCronometro() {
