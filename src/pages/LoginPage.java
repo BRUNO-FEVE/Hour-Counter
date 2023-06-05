@@ -10,21 +10,22 @@ import java.awt.event.ActionEvent;
 public class LoginPage extends PageModel{
 
     private JLabel loginLabel, passwordLabel, logoLabel;
-    private JTextField loginField, passwordField;
     private ImageIcon logoIcon, scaledIcon;
     private Image scaledImage; 
 
+    public JPasswordField passwordField;
+    public JTextField raField;
     public JButton loginButton, registerButton;
     public BorderLayout PageLayout = new BorderLayout(10, 10);
 
-    public LoginPage(String superTitle, Container caixa) {
-        super(superTitle, caixa);
+    public LoginPage() {
+        super.superTitle = "Login";
 
         loginLabel = new JLabel("Login:");
         passwordLabel = new JLabel("Senha:");
 
-        loginField = new JTextField("", 30);
-        passwordField = new JTextField("", 30);
+        raField = new JTextField("", 30);
+        passwordField = new JPasswordField("", 30);
 
         registerButton = new JButton("Cadastrar");
         loginButton = new JButton("Logar");
@@ -36,14 +37,13 @@ public class LoginPage extends PageModel{
         scaledIcon = new ImageIcon(scaledImage);
         logoLabel = new JLabel(scaledIcon);
         logoLabel.setBorder(margin); 
-        
 
         //Button Layout 
         Dimension buttonSize = new Dimension(110, 40);
         registerButton.setPreferredSize(buttonSize);
         loginButton.setPreferredSize(buttonSize);
 
-        super.caixa = new JPanel(new BorderLayout(10, 10));
+        super.caixa.setLayout(new BorderLayout(10, 10));
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -58,7 +58,7 @@ public class LoginPage extends PageModel{
         centerPanel.add(passwordLabel, gbc);
         gbc.gridx = 1;
         gbc.gridy = 0;
-        centerPanel.add(loginField, gbc);
+        centerPanel.add(raField, gbc);
         gbc.gridy = 1;
         centerPanel.add(passwordField, gbc);
 
@@ -70,6 +70,19 @@ public class LoginPage extends PageModel{
         super.caixa.add(centerPanel, BorderLayout.CENTER);
         super.caixa.add(buttonPanel, BorderLayout.SOUTH);
         super.caixa.add(logoLabel, BorderLayout.NORTH);
+    }
+
+    public void cleanFields() {
+        this.raField.setText("");
+        this.passwordField.setText("");
+    }
+
+    public JButton getLoginButton() {
+        return this.loginButton;
+    }
+
+    public JButton getRegisterButton() {
+        return this.registerButton;
     }
 
     public void actionPerformed(ActionEvent e) {

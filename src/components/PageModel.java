@@ -1,33 +1,32 @@
 package components;
-import java.awt.Container;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 
 public class PageModel {
     
-    public String superTitle;
-    public Container caixa;
+    public String superTitle, pageId;
+    public JPanel caixa;
     public JMenuBar menuBar;
+    public JMenuItem back, exit, menu, viewHour, createHours; 
 
-    public PageModel(String superString, Container caixa) {
-        super();
-        this.superTitle = superString;
-        this.caixa = caixa;
+    public PageModel() {
+        this.caixa = new JPanel();
 
         menuBar = new JMenuBar();
         
         JMenu fileMenu = new JMenu("Menu");
         JMenu pagesMenu = new JMenu("Paginas");
 
-        JMenuItem back = new JMenuItem("Voltar");
-        JMenuItem exit = new JMenuItem("Sair");
+        back = new JMenuItem("Voltar");
+        exit = new JMenuItem("Sair");
 
-        JMenuItem menu = new JMenuItem("Menu");
-        JMenuItem viewHour = new JMenuItem("Histórico");
-        JMenuItem createHours = new JMenuItem("Salvar Horas");
+        menu = new JMenuItem("Menu");
+        viewHour = new JMenuItem("Histórico");
+        createHours = new JMenuItem("Salvar Horas");
 
         fileMenu.add(back);
         fileMenu.addSeparator();
@@ -41,7 +40,35 @@ public class PageModel {
         menuBar.add(pagesMenu);
     }
 
-    public Container getScreanContent() {
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
+    }
+
+    public String getPageId() {
+        return this.pageId;
+    }
+
+    public JMenuItem getExitMenuItem() {
+        return this.exit;
+    }
+
+    public JMenuItem getBackMenuItem() {
+        return this.back;
+    }
+
+    public JMenuItem getMenuMenuItem() {
+        return this.menu;
+    }
+
+    public JMenuItem getViewHourMenuItem() {
+        return this.viewHour;
+    }
+
+    public JMenuItem getStopWatchMenuItem() {
+        return this.createHours;
+    }
+
+    public JPanel getScreanContent() {
         return this.caixa;
     }
 }

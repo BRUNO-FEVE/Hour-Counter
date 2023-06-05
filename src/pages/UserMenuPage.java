@@ -1,6 +1,5 @@
 package pages;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,11 +12,11 @@ public class UserMenuPage extends PageModel{
     public JButton registerHourButton, showHourButton;
 
     public boolean visible;
-    public String[] dataList= new String[6];
+    public Object[] dataList;
 
-    public UserMenuPage(String superTitle, Container caixa, String[] dataStrings) {
-        super(superTitle, caixa);
-        this.dataList = dataStrings;
+    public UserMenuPage() {
+        super.superTitle = "Menu";
+        super.pageId = "0";
 
         message = new JLabel("Seus Dados:");
         userNameLabel = new JLabel("Nome:");
@@ -26,11 +25,11 @@ public class UserMenuPage extends PageModel{
         userAreaLabel = new JLabel("Área:");
         userProjectLabel = new JLabel("Projeto:");
 
-        nameData = new JLabel(dataList[1]);
-        raData = new JLabel(dataList[2]);
-        entityData = new JLabel(dataList[3]);
-        areaData = new JLabel(dataList[4]);
-        projectData = new JLabel(dataList[5]);
+        nameData = new JLabel();
+        raData = new JLabel();
+        entityData = new JLabel();
+        areaData = new JLabel();
+        projectData = new JLabel();
 
         registerHourButton = new JButton("Registrar Horas");
         showHourButton = new JButton("Visualizar Horas");
@@ -85,6 +84,8 @@ public class UserMenuPage extends PageModel{
         screanLayoutPanel.add(userDataPanel);
         screanLayoutPanel.add(buttonsPanel);
 
+        super.menu.setVisible(false);
+
         super.caixa.add(screanLayoutPanel);
     }
 
@@ -92,7 +93,24 @@ public class UserMenuPage extends PageModel{
         return this.visible = visible;
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public JButton getHourViewButton() {
+        return this.showHourButton;
+    }
 
+    public JButton getRegisterButton() {
+        return this.registerHourButton;
+    }
+
+    public JMenuItem getBackMenuItem() {
+        return this.back;
+    }
+
+    public void setUserData(Object[] dataList) {
+        this.dataList = dataList;
+        this.nameData.setText(this.dataList[0].toString());
+        this.raData.setText(this.dataList[1].toString());
+        this.entityData.setText(this.dataList[2].toString());
+        this.areaData.setText(this.dataList[3].toString());
+        this.projectData.setText(this.dataList[4].toString());
     }
 }
