@@ -83,6 +83,11 @@ public class App extends  JFrame implements ActionListener{
         menuContent.createHours.addActionListener(this);
         menuContent.viewHour.addActionListener(this);
 
+        hourViewContent.createHours.addActionListener(this);
+        hourViewContent.menu.addActionListener(this);
+
+
+
         this.content = loginPanel;
         caixa.add(content);
 
@@ -199,10 +204,12 @@ public class App extends  JFrame implements ActionListener{
             this.updatePage(this.lastPages.get(this.lastPages.size()-2));
         }
 
-        if (e.getSource() == menuContent.createHours) {
+        if (e.getSource() == menuContent.createHours || e.getSource() == hourViewContent.createHours) {
             this.updatePage(stopWatchContent);
         } else if (e.getSource() == menuContent.viewHour) {
             this.updatePage(hourViewContent);
+        } else if (e.getSource() == hourViewContent.menu) {
+            this.updatePage(menuContent);
         }
 
     }
