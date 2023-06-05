@@ -35,6 +35,12 @@ public class JDBC {
     this.password = password;
     
     }
+
+    public JDBC(String ra, String hours, String desc){
+        this.ra = ra;
+        this.hours = hours;
+        this.desc = desc;        
+        }
     
    //gets
     public String getName(){
