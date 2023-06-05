@@ -3,7 +3,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -67,6 +66,9 @@ public class App extends  JFrame implements ActionListener{
         registerContent.registerButton.addActionListener(this);
         menuContent.showHourButton.addActionListener(this);
 
+        menuContent.exit.addActionListener(this);
+        hourViewContent.exit.addActionListener(this);
+
         this.content = loginPanel;
         caixa.add(content);
 
@@ -126,7 +128,7 @@ public class App extends  JFrame implements ActionListener{
                     this.updatePage(menuContent);
                     isLogged = true;
 
-                    System.out.println(Arrays.toString(userData));
+                    loginContent.cleanFields();
                 } 
             }
             if (!isLogged) {
@@ -149,6 +151,8 @@ public class App extends  JFrame implements ActionListener{
                 if (new String(registerContent.passwordField.getPassword()).equals(new String(registerContent.confirmField.getPassword()))) {
                     this.addUserToDataBase(registerContent.getNewUser());
                     this.updatePage(loginContent);
+                    
+                    registerContent.cleanFields();
                 } else {
                     JOptionPane.showMessageDialog(null, "As senhas digitadas são DIFERENTES!", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
@@ -166,6 +170,13 @@ public class App extends  JFrame implements ActionListener{
             hourViewContent.setUserData(this.hourData, this.userData);
             this.updatePage(hourViewContent);
         }
+
+        // Menu Bar
+        if (e.getSource() == menuContent.getExitMenuItem() || e.getSource() == hourViewContent.getExitMenuItem()) {
+            this.updatePage(loginContent);
+        }
+
+
 
     }
 }

@@ -72,6 +72,11 @@ public class LoginPage extends PageModel{
         super.caixa.add(logoLabel, BorderLayout.NORTH);
     }
 
+    public void cleanFields() {
+        this.raField.setText("");
+        this.passwordField.setText("");
+    }
+
     public JButton getLoginButton() {
         return this.loginButton;
     }

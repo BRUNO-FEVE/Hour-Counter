@@ -84,6 +84,7 @@ public class UserMenuPage extends PageModel{
         screanLayoutPanel.add(buttonsPanel);
 
         super.back.setVisible(false);
+        super.menu.setVisible(false);
 
         super.caixa.add(screanLayoutPanel);
     }

@@ -41,6 +41,10 @@ public class PageModel {
         menuBar.add(pagesMenu);
     }
 
+    public JMenuItem getExitMenuItem() {
+        return this.exit;
+    }
+
     public JPanel getScreanContent() {
         return this.caixa;
     }

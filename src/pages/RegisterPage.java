@@ -114,6 +114,16 @@ public class RegisterPage extends PageModel{
         return newUser;
     }
 
+    public void cleanFields() {
+        this.nameField.setText("");
+        this.raField.setText("");
+        this.entityField.setText("");
+        this.areaField.setText("");
+        this.projectField.setText("");
+        this.passwordField.setText("");
+        this.confirmField.setText("");
+    }
+
     public JButton getRegisterButton() {
         return this.registerButton;
     }

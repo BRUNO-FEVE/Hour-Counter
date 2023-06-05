@@ -112,6 +112,8 @@ public class HourViewPage extends PageModel{
         screanLayoutPanel.add(tableTittle);
         screanLayoutPanel.add(hourHistoricTable);
 
+        super.viewHour.setVisible(false);
+
         super.caixa.add(screanLayoutPanel);
     }
 
