@@ -26,12 +26,10 @@ DROP TABLE IF EXISTS `hours`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hours` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `login_id` int NOT NULL,
+  `login_ra` char(10) NOT NULL,
   `hours` char(8) NOT NULL,
   `description` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `login_id` (`login_id`),
-  CONSTRAINT `hours_ibfk_1` FOREIGN KEY (`login_id`) REFERENCES `login` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,7 +52,7 @@ DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(55) NOT NULL,
-  `password` char(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `ra` char(10) NOT NULL,
   `entity` varchar(25) NOT NULL,
   `area` varchar(25) NOT NULL,
@@ -81,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-02 14:51:47
+-- Dump completed on 2023-06-04 22:46:13
