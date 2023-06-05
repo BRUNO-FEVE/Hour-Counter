@@ -64,6 +64,7 @@ public class StopwatchPage extends PageModel {
         contentPanel.add(descricaoPanel);
         contentPanel.add(enviarPanel);
 
+        super.createHours.setVisible(false);
         super.caixa.add(contentPanel, BorderLayout.CENTER);
 
         buttonStart.addActionListener(new ActionListener() {

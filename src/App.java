@@ -18,13 +18,14 @@ import pages.UserMenuPage;
 
 public class App extends  JFrame implements ActionListener{
 
-    public String title = "Login", lastPage = "";
+    public String title = "Login";
     public JPanel content, loginPanel, registerPanel, menuPanel, hourViewPanel, stopWatchPanel;
     public Container caixa;
     public JMenuBar menuBar;
 
     private ArrayList<Object[]> data = new ArrayList<>();
     private ArrayList<Object[]> hourData = new ArrayList<>();
+    private ArrayList<PageModel> lastPages = new ArrayList<>();
     private Object[] userData;
 
     private Object[] userTest = new Object[] {
@@ -79,6 +80,9 @@ public class App extends  JFrame implements ActionListener{
         hourViewContent.back.addActionListener(this);
         stopWatchContent.back.addActionListener(this);
 
+        menuContent.createHours.addActionListener(this);
+        menuContent.viewHour.addActionListener(this);
+
         this.content = loginPanel;
         caixa.add(content);
 
@@ -97,6 +101,12 @@ public class App extends  JFrame implements ActionListener{
     }
 
     public void updatePage(PageModel page) {
+        if (page == hourViewContent) {
+            hourViewContent.setUserData(this.hourData, this.userData);
+        }
+
+        this.lastPages.add(page);
+        System.out.println(lastPages);
         this.content = page.getScreanContent();
         this.menuBar = page.menuBar;
         this.title = page.superTitle;
@@ -177,35 +187,23 @@ public class App extends  JFrame implements ActionListener{
             Object[] userHourData = {5, "Reunião Planning", "01:50:00", "123"};
             this.hourData.add(userHourData);
 
-            hourViewContent.setUserData(this.hourData, this.userData);
             this.updatePage(hourViewContent);
-            this.lastPage = menuContent.getPageId();
         } else if (e.getSource() == menuContent.getRegisterButton()) {
             this.updatePage(stopWatchContent);
-            this.lastPage = menuContent.getPageId();
         }
 
         // Menu Bar
         if (e.getSource() == menuContent.getExitMenuItem() || e.getSource() == hourViewContent.getExitMenuItem() || e.getSource() == stopWatchContent.getExitMenuItem()) {
             this.updatePage(loginContent);
         } else if (e.getSource() == hourViewContent.getBackMenuItem() || e.getSource() == stopWatchContent.getBackMenuItem()) {
-            System.out.println(lastPage);
-            switch (this.lastPage) {
-                case "0":
-                    this.updatePage(menuContent);
-                    break;
-                case "1":
-                    this.updatePage(hourViewContent);
-                    break;
-                case "2":
-                    this.updatePage(stopWatchContent);
-                    break;
-                default:
-                    break;
-            }
+            this.updatePage(this.lastPages.get(this.lastPages.size()-2));
         }
 
-
+        if (e.getSource() == menuContent.createHours) {
+            this.updatePage(stopWatchContent);
+        } else if (e.getSource() == menuContent.viewHour) {
+            this.updatePage(hourViewContent);
+        }
 
     }
 }
