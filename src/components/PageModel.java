@@ -1,0 +1,74 @@
+package components;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
+
+public class PageModel {
+    
+    public String superTitle, pageId;
+    public JPanel caixa;
+    public JMenuBar menuBar;
+    public JMenuItem back, exit, menu, viewHour, createHours; 
+
+    public PageModel() {
+        this.caixa = new JPanel();
+
+        menuBar = new JMenuBar();
+        
+        JMenu fileMenu = new JMenu("Menu");
+        JMenu pagesMenu = new JMenu("Paginas");
+
+        back = new JMenuItem("Voltar");
+        exit = new JMenuItem("Sair");
+
+        menu = new JMenuItem("Menu");
+        viewHour = new JMenuItem("Histórico");
+        createHours = new JMenuItem("Salvar Horas");
+
+        fileMenu.add(back);
+        fileMenu.addSeparator();
+        fileMenu.add(exit);
+
+        pagesMenu.add(menu);
+        pagesMenu.add(viewHour);
+        pagesMenu.add(createHours);
+        
+        menuBar.add(fileMenu);
+        menuBar.add(pagesMenu);
+    }
+
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
+    }
+
+    public String getPageId() {
+        return this.pageId;
+    }
+
+    public JMenuItem getExitMenuItem() {
+        return this.exit;
+    }
+
+    public JMenuItem getBackMenuItem() {
+        return this.back;
+    }
+
+    public JMenuItem getMenuMenuItem() {
+        return this.menu;
+    }
+
+    public JMenuItem getViewHourMenuItem() {
+        return this.viewHour;
+    }
+
+    public JMenuItem getStopWatchMenuItem() {
+        return this.createHours;
+    }
+
+    public JPanel getScreanContent() {
+        return this.caixa;
+    }
+}
