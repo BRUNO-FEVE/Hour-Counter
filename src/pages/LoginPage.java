@@ -33,7 +33,7 @@ public class LoginPage extends PageModel{
         EmptyBorder margin = new EmptyBorder(50, 0, 0, 0);
         // Image
         logoIcon = new ImageIcon("./assets/logoMaua.png");
-        scaledImage = logoIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        scaledImage = logoIcon.getImage().getScaledInstance(200, 100, Image.SCALE_SMOOTH);
         scaledIcon = new ImageIcon(scaledImage);
         logoLabel = new JLabel(scaledIcon);
         logoLabel.setBorder(margin); 
@@ -47,6 +47,7 @@ public class LoginPage extends PageModel{
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
+        centerPanel.setBorder(margin);
 
         // Grid Layout
         GridBagConstraints gbc = new GridBagConstraints();

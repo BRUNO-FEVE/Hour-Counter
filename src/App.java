@@ -45,8 +45,8 @@ public class App extends  JFrame implements ActionListener{
     public App () throws SQLException {
         setTitle(title);
 
-        this.db = new ConectDB();
-        this.conn = db.conect();
+        // this.db = new ConectDB();
+        // this.conn = db.conect();
 
         caixa = getContentPane();
         caixa.setLayout(new FlowLayout());
